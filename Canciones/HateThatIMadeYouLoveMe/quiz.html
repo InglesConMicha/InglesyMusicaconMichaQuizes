@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Metodológico - Hate That I Made You Love Me 🧠</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --bg-gradient: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%);
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-english: #38bdf8;
+      --text-spanish: #4ade80;
+      --text-pron: #c084fc;
+      --text-notes: #fde047;
+      --font-scale: 1.0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+
+    body {
+      font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+      background: var(--bg-color);
+      background-image: var(--bg-gradient);
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      max-width: 600px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #38bdf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .quiz-card {
+      width: 100%;
+      max-width: 680px;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+
+    /* Barra de progreso */
+    .progress-container {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #38bdf8, #c084fc);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .quiz-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    /* Caja de la Pregunta */
+    .question-section {
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+
+    .question-type-tag {
+      background: rgba(192, 132, 252, 0.1);
+      border: 1px solid rgba(192, 132, 252, 0.2);
+      color: var(--text-pron);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .question-text {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    /* Opciones */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .option-button {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #f8fafc;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .option-button:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--text-english);
+    }
+
+    .option-button.correct {
+      background: rgba(74, 222, 128, 0.2) !important;
+      border-color: var(--text-spanish) !important;
+      color: var(--text-spanish);
+    }
+
+    .option-button.incorrect {
+      background: rgba(248, 113, 113, 0.2) !important;
+      border-color: #f87171 !important;
+      color: #f87171;
+    }
+
+    /* Input de Producción */
+    .production-container {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .production-textarea {
+      width: 100%;
+      height: 100px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      color: #f8fafc;
+      padding: 14px;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: none;
+      outline: none;
+    }
+
+    .production-textarea:focus {
+      border-color: var(--text-english);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
+    }
+
+    /* Feedback de respuesta */
+    .feedback-box {
+      font-size: 1rem;
+      padding: 14px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      min-height: 45px;
+    }
+
+    /* Pantalla de Resultados */
+    .results-screen {
+      display: none;
+      text-align: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .score-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 6px solid var(--text-english);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-english);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    }
+
+    .score-circle span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+
+    .badge-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-notes);
+    }
+
+    .review-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .review-table th, .review-table td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .review-table th {
+      color: #94a3b8;
+      font-weight: 700;
+    }
+
+    .btn {
+      background: linear-gradient(to right, #0284c7, #0369a1);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to right, #0369a1, #075985);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Quiz Metodológico - 5 Pasos 🧠</h1>
+  <p>Demuestra tu dominio lingüístico con "Hate That I Made You Love Me"</p>
+</header>
+
+<div class="quiz-card" id="quiz-card">
+  
+  <!-- Barra de progreso superior -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <div class="quiz-meta">
+    <span id="question-number">Paso 1 de 5</span>
+    <span id="score-counter">Aciertos: 0/4</span>
+  </div>
+
+  <!-- Contenedor del Quiz Activo -->
+  <div id="quiz-active-area" style="display: flex; flex-direction: column; gap: 20px;">
+    
+    <!-- Sección de la Pregunta -->
+    <div class="question-section">
+      <span class="question-type-tag" id="question-type">Paso 1: Vocabulario</span>
+      <div class="question-text" id="question-text">
+        Cargando pregunta...
+      </div>
+    </div>
+
+    <!-- Opciones (Pasos 1-4) -->
+    <div class="options-grid" id="options-container">
+      <!-- Opciones dinámicas -->
+    </div>
+
+    <!-- Área de Producción (Paso 5) -->
+    <div class="production-container" id="production-container">
+      <textarea class="production-textarea" id="production-input" placeholder="Escribe tu oración aquí en inglés..."></textarea>
+      <button class="btn" onclick="submitProductionAnswer()">Enviar Oración 📝</button>
+    </div>
+
+    <!-- Caja de Feedback temporal -->
+    <div class="feedback-box" id="feedback-box"></div>
+
+    <button class="btn" id="next-question-btn" style="display: none;" onclick="loadNextQuestion()">
+      Avanzar al Siguiente Paso ➡️
+    </button>
+  </div>
+
+  <!-- Pantalla de Resultados Finales -->
+  <div class="results-screen" id="results-screen">
+    <h2 style="font-size: 1.8rem; font-weight: 800; color: #fff;">¡Quiz Completado! 🏁</h2>
+    
+    <div class="score-circle" id="score-circle">
+      0/4
+      <span>Aciertos</span>
+    </div>
+
+    <div class="badge-title" id="badge-title">Evaluando...</div>
+    <p id="badge-description" style="color: #94a3b8; max-width: 500px; margin: 0 auto;"></p>
+
+    <!-- Resumen de Respuestas -->
+    <h3 style="text-align: left; margin-top: 14px; color: #fff; font-size: 1.1rem;">Resumen de tu Desempeño:</h3>
+    <table class="review-table">
+      <thead>
+        <tr>
+          <th>Paso Evaluado</th>
+          <th>Tu Respuesta</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody id="review-table-body">
+        <!-- Rellenado por JS -->
+      </tbody>
+    </table>
+
+    <div style="display: flex; gap: 12px; justify-content: center; margin-top: 12px;">
+      <button class="btn" onclick="restartQuiz()">🔄 Reintentar Quiz</button>
+      <button class="btn" style="background: #334155;" onclick="window.close()">❌ Cerrar</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Estructura de 5 pasos fija para "Hate That I Made You Love Me"
+  const quizSteps = [
+    {
+      stepName: "Paso 1: Vocabulario 📖",
+      question: "¿Qué significa el adverbio '<b>Barely</b>' en la frase lirica '<i>Cause I barely tried</i>'?",
+      options: [
+        "Apenas / Casi no",
+        "Fácilmente",
+        "Siempre",
+        "A propósito"
+      ],
+      correctAnswer: "Apenas / Casi no",
+      feedback: "El adverbio 'barely' expresa que una acción ocurrió por muy poco, traduciéndose como 'apenas' o 'casi no'."
+    },
+    {
+      stepName: "Paso 2: Comprensión 💡",
+      question: "En la frase principal '<i>Hate that I made you love me</i>', ¿qué causó la cantante en la otra persona?",
+      options: [
+        "Provocó o forzó que la otra persona se enamorara de ella",
+        "Logró que la otra persona la odiara profundamente",
+        "Le pidió disculpas por no poder amarlo",
+        "Intentó convencerlo de tener una amistad"
+      ],
+      correctAnswer: "Provocó o forzó que la otra persona se enamorara de ella",
+      feedback: "La estructura causativa 'made you love me' expresa que el sujeto forzó, causó o influyó directamente en el sentimiento del otro."
+    },
+    {
+      stepName: "Paso 3: Pronunciación 🗣️",
+      question: "En la palabra '<b>tomb</b>' de la frase '<i>Like flowers from a tomb</i>', ¿cuál es la regla de pronunciación correcta?",
+      options: [
+        "La letra 'b' final es muda, se pronuncia como /tuːm/",
+        "La letra 'o' se pronuncia abierta y la 'b' suena fuerte",
+        "Se lee exactamente igual que 'tombs' con 'b' sonora",
+        "La letra 't' inicial no se pronuncia"
+      ],
+      correctAnswer: "La letra 'b' final es muda, se pronuncia como /tuːm/",
+      feedback: "En inglés, la combinación 'mb' al final de las palabras (como tomb, comb, bomb) usualmente tiene una 'b' muda. Suena /tuːm/."
+    },
+    {
+      stepName: "Paso 4: Uso Real 🇺🇸",
+      question: "En inglés real coloquial estadounidense, ¿qué significa estar '<b>down to</b>' en la frase '<i>Just down to eclipse the moon</i>'?",
+      options: [
+        "Estar listo, dispuesto o con ganas de hacer una actividad",
+        "Sentirse triste, decaído o enfermo",
+        "Hacer trampa en un juego de cartas",
+        "Bajar las escaleras rápidamente"
+      ],
+      correctAnswer: "Estar listo, dispuesto o con ganas de hacer una actividad",
+      feedback: "El slang 'be down to' o 'be down for' se usa diariamente en EE.UU. para indicar disposición o interés: 'I'm down to go' (Estoy puesto para ir)."
+    },
+    {
+      stepName: "Paso 5: Producción ✍️",
+      question: "Escribe tu propia oración original aplicando la estructura de gramática real de la canción:<br><br><span style='color:var(--text-english)'><b>Subject + Make (conjugated) + Person + Verb (infinitive without 'to')</b></span><br><br><small style='color:#94a3b8'>(Ejemplo: 'You make me smile' o 'He makes me work late')</small>",
+      correctAnswer: "PRODUCCION_OPEN",
+      options: [],
+      feedback: "<b>Guía de Auto-Evaluación:</b> Asegúrate de que el verbo posterior a la persona NO tenga 'to'. Por ejemplo: 'She makes me *cry*' (Correcto) en lugar de 'She makes me *to cry*' (Incorrecto)."
+    }
+  ];
+
+  let currentStepIndex = 0;
+  let score = 0;
+  let isAnswered = false;
+  let userReviewData = [];
+
+  window.addEventListener('load', () => {
+    loadStep();
+  });
+
+  function loadStep() {
+    isAnswered = false;
+    document.getElementById('next-question-btn').style.display = 'none';
+    document.getElementById('feedback-box').innerHTML = '';
+    document.getElementById('feedback-box').style.background = 'none';
+    
+    // Configurar metadatos superiores
+    document.getElementById('question-number').innerText = `Paso ${currentStepIndex + 1} de 5`;
+    document.getElementById('score-counter').innerText = `Aciertos: ${score}/4`;
+    
+    const pct = (currentStepIndex / 5) * 100;
+    document.getElementById('progress-bar').style.width = `${pct}%`;
+
+    const step = quizSteps[currentStepIndex];
+    document.getElementById('question-type').innerText = step.stepName;
+    document.getElementById('question-text').innerHTML = step.question;
+
+    const optionsContainer = document.getElementById('options-container');
+    const productionContainer = document.getElementById('production-container');
+
+    // Condicional para Paso 5 (Producción)
+    if (step.correctAnswer === "PRODUCCION_OPEN") {
+      optionsContainer.style.display = 'none';
+      productionContainer.style.display = 'flex';
+      document.getElementById('production-input').value = "";
+    } else {
+      optionsContainer.style.display = 'flex';
+      productionContainer.style.display = 'none';
+      optionsContainer.innerHTML = '';
+      
+      step.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-button';
+        btn.innerHTML = `<span>${idx + 1}. ${opt}</span>`;
+        btn.onclick = () => selectOption(btn, opt);
+        optionsContainer.appendChild(btn);
+      });
+    }
+  }
+
+  // Calificar opciones de los pasos 1 a 4
+  function selectOption(selectedBtn, selectedValue) {
+    if (isAnswered) return;
+    isAnswered = true;
+
+    const step = quizSteps[currentStepIndex];
+    const buttons = document.querySelectorAll('.option-button');
+    buttons.forEach(btn => btn.disabled = true);
+
+    const isCorrect = selectedValue === step.correctAnswer;
+    if (isCorrect) {
+      score++;
+      selectedBtn.classList.add('correct');
+      document.getElementById('feedback-box').innerHTML = `<span style="color:var(--text-spanish)">¡Excelente! 🎉 Respuesta correcta.</span>`;
+      document.getElementById('feedback-box').style.background = 'rgba(74, 222, 128, 0.1)';
+    } else {
+      selectedBtn.classList.add('incorrect');
+      buttons.forEach(btn => {
+        if (btn.innerText.substring(3).trim() === step.correctAnswer) {
+          btn.classList.add('correct');
+        }
+      });
+      document.getElementById('feedback-box').innerHTML = `<span style="color:#f87171">Incorrecto. ${step.feedback}</span>`;
+      document.getElementById('feedback-box').style.background = 'rgba(248, 113, 113, 0.1)';
+    }
+
+    userReviewData.push({
+      step: step.stepName.split(":")[1].trim(),
+      answer: selectedValue,
+      status: isCorrect ? "✅ Correcta" : "❌ Incorrecta",
+      color: isCorrect ? "var(--text-spanish)" : "#f87171"
+    });
+
+    document.getElementById('score-counter').innerText = `Aciertos: ${score}/4`;
+    document.getElementById('next-question-btn').style.display = 'block';
+  }
+
+  // Guardar y procesar la oración libre escrita por el alumno (Paso 5)
+  function submitProductionAnswer() {
+    if (isAnswered) return;
+    const inputVal = document.getElementById('production-input').value.trim();
+    if (!inputVal) {
+      alert("Por favor, escribe una oración antes de enviar.");
+      return;
+    }
+    isAnswered = true;
+
+    const step = quizSteps[currentStepIndex];
+    document.getElementById('feedback-box').innerHTML = `
+      <div style="text-align:left; color:#f8fafc; font-size:0.95rem;">
+        <span style="color:var(--text-spanish); font-weight:bold; display:block; margin-bottom:4px;">¡Oración Enviada! ✍️</span>
+        ${step.feedback}<br><br>
+        <b>Tú escribiste:</b> <i style="color:var(--text-english)">"${inputVal}"</i>
+      </div>
+    `;
+    document.getElementById('feedback-box').style.background = 'rgba(56, 189, 248, 0.1)';
+
+    userReviewData.push({
+      step: "Producción",
+      answer: `"${inputVal}"`,
+      status: "📝 Auto-evaluación",
+      color: "var(--text-pron)"
+    });
+
+    document.getElementById('next-question-btn').style.display = 'block';
+  }
+
+  function loadNextQuestion() {
+    currentStepIndex++;
+    if (currentStepIndex >= quizSteps.length) {
+      showResults();
+    } else {
+      loadStep();
+    }
+  }
+
+  // Muestra pantalla final de puntuación
+  function showResults() {
+    document.getElementById('progress-bar').style.width = '100%';
+    document.getElementById('quiz-active-area').style.display = 'none';
+    
+    const results = document.getElementById('results-screen');
+    results.style.display = 'flex';
+
+    document.getElementById('score-circle').innerHTML = `${score}<span>/ 4</span>`;
+
+    let badge = "";
+    let desc = "";
+
+    if (score === 4) {
+      badge = "🏆 ¡Estudiante Bilingüe de Oro!";
+      desc = "¡Perfecto! Dominas todo el vocabulario, comprensión, pronunciación y uso real de esta lección. Ahora pon en práctica tu oración frente al espejo.";
+    } else if (score >= 2) {
+      badge = "⭐ ¡Buen Oído y Comprensión!";
+      desc = "Buen trabajo en las fases teóricas. Revisa el resumen de tus respuestas abajo para ver en qué te equivocaste y seguir mejorando.";
+    } else {
+      badge = "🔄 ¡Sigue Practicando!";
+      desc = "Te recomendamos volver a escuchar la canción en el reproductor prestando especial atención a la traducción e IPA antes de volver a tomar este quiz.";
+    }
+
+    document.getElementById('badge-title').innerText = badge;
+    document.getElementById('badge-description').innerText = desc;
+
+    const tbody = document.getElementById('review-table-body');
+    tbody.innerHTML = '';
+    userReviewData.forEach(item => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><b>${item.step}</b></td>
+        <td>${item.answer}</td>
+        <td style="color:${item.color}">${item.status}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function restartQuiz() {
+    document.getElementById('quiz-active-area').style.display = 'flex';
+    document.getElementById('results-screen').style.display = 'none';
+    currentStepIndex = 0;
+    score = 0;
+    userReviewData = [];
+    loadStep();
+  }
+</script>
+
+</body>
+</html>
