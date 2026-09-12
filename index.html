@@ -3,271 +3,579 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aprende Inglés con Música - Micha 🎵</title>
-  
-  <!-- Favicon de Música SVG Premium -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c084fc' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18V5l12-2v13'%3E%3C/path%3E%3Ccircle cx='6' cy='18' r='3' fill='%2338bdf8'%3E%3C/circle%3E%3Ccircle cx='18' cy='16' r='3' fill='%2338bdf8'%3E%3C/circle%3E%3C/svg%3E">
-
-  <!-- Google Fonts -->
+  <title>Aprende Inglés con Música — Quiz Platform 🎵</title>
+  <meta name="description" content="Aprende inglés de forma divertida y efectiva con quizzes basados en canciones populares. Vocabulario, gramática, pronunciación y más.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c084fc' stroke-width='2.5'%3E%3Cpath d='M9 18V5l12-2v13'%3E%3C/path%3E%3Ccircle cx='6' cy='18' r='3' fill='%2338bdf8'%3E%3C/circle%3E%3C/svg%3E">
   <style>
     :root {
-      --bg-color: #0b0f19;
-      --bg-gradient: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%);
-      --card-bg: rgba(30, 41, 59, 0.65);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text-english: #38bdf8;
-      --text-spanish: #4ade80;
-      --text-pron: #c084fc;
-      --text-notes: #fde047;
+      --bg: #06090f;
+      --card: rgba(12, 20, 38, 0.82);
+      --border: rgba(255,255,255,0.07);
+      --text: #f0f9ff;
+      --muted: #64748b;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      transition: all 0.25s ease;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Outfit', system-ui, -apple-system, sans-serif;
-      background: var(--bg-color);
-      background-image: var(--bg-gradient);
-      color: #f8fafc;
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
+      overflow-x: hidden;
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-      max-width: 700px;
+    /* === CANVAS PARTICLES === */
+    #particles-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
     }
 
-    header h1 {
-      font-size: 2.6rem;
-      font-weight: 800;
-      background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 12px;
+    /* === HERO SECTION === */
+    .hero {
+      position: relative; z-index: 1;
+      width: 100%; overflow: hidden;
+      min-height: 340px;
+      display: flex; align-items: flex-end;
+    }
+
+    .hero-img {
+      position: absolute; inset: 0;
+      background: url('hero_bg.jpg') center/cover no-repeat;
+    }
+
+    .hero-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(6,9,15,0.4) 0%, rgba(6,9,15,0.7) 60%, rgba(6,9,15,1) 100%);
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1100px;
+      margin: 0 auto; padding: 40px 24px 48px;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(56,189,248,0.12);
+      border: 1px solid rgba(56,189,248,0.25);
+      color: #38bdf8; border-radius: 20px;
+      padding: 5px 14px; font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900; line-height: 1.1;
+      color: #fff; margin-bottom: 16px;
       letter-spacing: -0.02em;
     }
 
-    header p {
-      color: #94a3b8;
-      font-size: 1.15rem;
-      line-height: 1.5;
+    .hero-title span {
+      background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    /* Grid de canciones */
-    .song-grid {
+    .hero-desc {
+      color: rgba(240,249,255,0.6);
+      font-size: 1.05rem; line-height: 1.6; max-width: 540px;
+      margin-bottom: 28px;
+    }
+
+    .hero-stats {
+      display: flex; gap: 24px; flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+
+    .hero-stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.6rem; font-weight: 900; color: #38bdf8;
+    }
+
+    .hero-stat-lbl {
+      font-size: 0.75rem; color: var(--muted); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+
+    /* === MAIN CONTENT === */
+    .main-content {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 1100px;
+      margin: 0 auto; padding: 0 24px 60px;
+    }
+
+    .section-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 28px; margin-top: 48px;
+    }
+
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.4rem; font-weight: 800; color: #fff;
+    }
+
+    .section-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, rgba(255,255,255,0.1), transparent);
+    }
+
+    /* === SONGS GRID === */
+    .songs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
-      width: 100%;
-      max-width: 960px;
-      margin-bottom: 40px;
+      gap: 24px;
     }
 
+    /* === SONG CARD === */
     .song-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex; flex-direction: column;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease, border-color 0.3s ease;
+      position: relative;
     }
 
     .song-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(56, 189, 248, 0.3);
-      box-shadow: 0 15px 35px rgba(56, 189, 248, 0.1);
+      transform: translateY(-8px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
     }
 
-    /* Badge de Nivel */
+    .song-card.cyan-glow:hover { border-color: rgba(56,189,248,0.3); box-shadow: 0 25px 60px rgba(56,189,248,0.12); }
+    .song-card.pink-glow:hover { border-color: rgba(255,141,161,0.3); box-shadow: 0 25px 60px rgba(255,141,161,0.12); }
+    .song-card.gray-glow { opacity: 0.55; filter: grayscale(50%); pointer-events: none; }
+
+    /* Card cover image */
+    .card-cover {
+      width: 100%; height: 180px;
+      overflow: hidden; position: relative; flex-shrink: 0;
+    }
+
+    .card-cover img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 30%;
+      transition: transform 0.5s ease;
+    }
+
+    .song-card:hover .card-cover img { transform: scale(1.06); }
+
+    .card-cover-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(12,20,38,1) 0%, rgba(12,20,38,0.3) 60%, transparent 100%);
+    }
+
+    .card-cover-badges {
+      position: absolute; top: 12px; left: 12px;
+      display: flex; gap: 6px;
+    }
+
     .level-badge {
-      align-self: flex-start;
-      background: rgba(192, 132, 252, 0.15);
-      border: 1px solid rgba(192, 132, 252, 0.3);
-      color: var(--text-pron);
-      padding: 4px 12px;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      padding: 4px 10px; border-radius: 8px;
+      font-size: 0.7rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      backdrop-filter: blur(12px);
     }
 
-    .song-title {
-      font-size: 1.45rem;
-      font-weight: 700;
-      color: #fff;
+    .badge-intermediate {
+      background: rgba(192,132,252,0.2);
+      border: 1px solid rgba(192,132,252,0.35);
+      color: #c084fc;
     }
 
-    .song-artist {
-      font-size: 1rem;
-      color: var(--text-english);
-      margin-top: -8px;
-      font-weight: 600;
+    .badge-basic {
+      background: rgba(74,222,128,0.18);
+      border: 1px solid rgba(74,222,128,0.3);
+      color: #4ade80;
     }
 
-    .syllabus-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 14px 0;
-      font-size: 0.9rem;
-      color: #e2e8f0;
+    .badge-questions {
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
     }
 
-    .syllabus-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    /* Card body */
+    .card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; gap: 14px; }
+
+    .card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.2rem; font-weight: 800; color: #fff;
+      line-height: 1.2;
     }
 
-    .syllabus-item span.bullet {
-      color: var(--text-notes);
-      font-weight: bold;
+    .card-artist {
+      font-size: 0.9rem; font-weight: 600;
+      color: rgba(255,255,255,0.5); margin-top: -8px;
     }
 
-    .btn-action {
-      background: linear-gradient(to right, #0284c7, #0369a1);
-      color: white;
-      border: none;
-      padding: 14px 20px;
-      border-radius: 14px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
+    .card-artist.cyan { color: #38bdf8; }
+    .card-artist.pink { color: #ff8da1; }
+
+    /* Topics list */
+    .topics-list {
+      display: flex; flex-direction: column; gap: 8px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 14px;
     }
 
-    .btn-action:hover {
-      background: linear-gradient(to right, #0369a1, #075985);
-      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
+    .topic-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; color: rgba(240,249,255,0.75);
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
+    .topic-emoji { font-size: 0.95rem; flex-shrink: 0; }
+
+    /* CTA Button */
+    .btn-quiz {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 14px 20px; border-radius: 14px;
+      font-size: 0.95rem; font-weight: 800;
+      text-decoration: none; border: none; cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all 0.25s ease;
       margin-top: auto;
-      font-size: 0.85rem;
-      color: #475569;
-      max-width: 600px;
-      line-height: 1.6;
     }
 
-    footer a {
-      color: var(--text-english);
-      text-decoration: none;
+    .btn-quiz.cyan {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: white; box-shadow: 0 4px 20px rgba(2,132,199,0.3);
     }
 
-    footer a:hover {
-      text-decoration: underline;
+    .btn-quiz.cyan:hover {
+      background: linear-gradient(135deg, #0369a1, #075985);
+      box-shadow: 0 8px 28px rgba(2,132,199,0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-quiz.pink {
+      background: linear-gradient(135deg, #be185d, #9d174d);
+      color: white; box-shadow: 0 4px 20px rgba(190,24,93,0.3);
+    }
+
+    .btn-quiz.pink:hover {
+      background: linear-gradient(135deg, #9d174d, #831843);
+      box-shadow: 0 8px 28px rgba(190,24,93,0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-quiz.locked {
+      background: rgba(71,85,105,0.5);
+      color: rgba(255,255,255,0.3);
+      cursor: not-allowed; border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: none;
+    }
+
+    /* === FEATURES SECTION === */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 18px; padding: 20px;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .feature-card:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .feature-icon { font-size: 1.8rem; }
+
+    .feature-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 800; color: #fff;
+    }
+
+    .feature-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* === FOOTER === */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 28px 20px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      color: var(--muted); font-size: 0.82rem; line-height: 1.6;
+    }
+
+    footer span { color: #38bdf8; }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 600px) {
+      .hero-title { font-size: 1.8rem; }
+      .hero-stats { gap: 18px; }
+      .songs-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Aprende Inglés con Música 🎵</h1>
-  <p>Elige una de nuestras lecciones interactivas para poner a prueba tu nivel de inglés en vocabulario, comprensión, pronunciación, uso real y producción.</p>
-</header>
+<canvas id="particles-canvas"></canvas>
 
-<!-- Contenedor del Catálogo de Lecciones -->
-<div class="song-grid">
-  
-  <!-- Tarjeta de Canción 1 -->
-  <div class="song-card">
-    <span class="level-badge">Intermedio</span>
-    <div class="song-title">Hate That I Made You Love Me</div>
-    <div class="song-artist">Ariana Grande</div>
-    
-    <div class="syllabus-list">
-      <div class="syllabus-item">
-        <span class="bullet">📖</span>
-        <span><b>Vocabulario:</b> Adverbio "Barely" (Apenas / Casi no)</span>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <div class="hero-tag">🎵 English Music Learning Platform</div>
+    <h1 class="hero-title">Aprende inglés<br><span>con música real</span></h1>
+    <p class="hero-desc">
+      Domina vocabulario, gramática y pronunciación a través de las canciones que más te gustan.
+      Quiz interactivo, audio nativo y tarjetas de vocabulario.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">25+</div>
+        <div class="hero-stat-lbl">Preguntas disponibles</div>
       </div>
-      <div class="syllabus-item">
-        <span class="bullet">💡</span>
-        <span><b>Comprensión:</b> Expresiones causativas y traducción real</span>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-lbl">Canciones activas</div>
       </div>
-      <div class="syllabus-item">
-        <span class="bullet">🗣️</span>
-        <span><b>Pronunciación:</b> Regla de consonantes mudas ("tomb")</span>
-      </div>
-      <div class="syllabus-item">
-        <span class="bullet">🇺🇸</span>
-        <span><b>Uso Real:</b> Modismo americano "be down to"</span>
+      <div class="hero-stat">
+        <div class="hero-stat-num">B1–B2</div>
+        <div class="hero-stat-lbl">Nivel CEFR</div>
       </div>
     </div>
-    
-    <a href="Canciones/ArianaGrande_HateThatIMadeYouLoveMe/quiz.html" class="btn-action">
-      🧠 Responder Quiz Metodológico
-    </a>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="main-content">
+
+  <!-- SONGS SECTION -->
+  <div class="section-header">
+    <h2 class="section-title">🎶 Canciones Disponibles</h2>
+    <div class="section-line"></div>
   </div>
 
-  <!-- Tarjeta de Canción 2 (Maqueta / Placeholder para el futuro) -->
-  <div class="song-card" style="opacity: 0.6; filter: grayscale(40%);">
-    <span class="level-badge" style="background: rgba(74, 222, 128, 0.15); border-color: rgba(74, 222, 128, 0.3); color: var(--text-spanish);">Básico</span>
-    <div class="song-title">Yellow</div>
-    <div class="song-artist">Coldplay</div>
-    
-    <div class="syllabus-list">
-      <div class="syllabus-item">
-        <span class="bullet">📖</span>
-        <span><b>Vocabulario:</b> Adjetivos de brillo y luz (Shine, Skin)</span>
+  <div class="songs-grid">
+
+    <!-- CARD 1: Ariana Grande -->
+    <div class="song-card pink-glow">
+      <div class="card-cover">
+        <img src="Canciones/ArianaGrande_HateThatIMadeYouLoveMe/cover.jpg"
+             alt="Hate That I Made You Love Me - Ariana Grande">
+        <div class="card-cover-overlay"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-intermediate">Intermedio</span>
+          <span class="level-badge badge-questions">15 preguntas</span>
+        </div>
       </div>
-      <div class="syllabus-item">
-        <span class="bullet">💡</span>
-        <span><b>Comprensión:</b> Metáforas poéticas sencillas</span>
-      </div>
-      <div class="syllabus-item">
-        <span class="bullet">🗣️</span>
-        <span><b>Pronunciación:</b> Contracción de consonantes líquidas</span>
-      </div>
-      <div class="syllabus-item">
-        <span class="bullet">🇺🇸</span>
-        <span><b>Uso Real:</b> Expresiones cotidianas de afecto</span>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Hate That I Made You Love Me</div>
+          <div class="card-artist pink">Ariana Grande</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item">
+            <span class="topic-emoji">📖</span>
+            <span><b>Vocabulario:</b> "Barely", modismos americanos</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">🔗</span>
+            <span><b>Gramática:</b> Causativa MAKE + obj + verbo base</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">🔇</span>
+            <span><b>Pronunciación:</b> Consonante muda B en "-mb" (tomb)</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">🇺🇸</span>
+            <span><b>Slang:</b> "Be down to", "ya", "wanna"</span>
+          </div>
+        </div>
+        <a href="Canciones/ArianaGrande_HateThatIMadeYouLoveMe/quiz.html" class="btn-quiz pink">
+          🧠 Empezar Quiz
+        </a>
       </div>
     </div>
-    
-    <button class="btn-action" style="background: #475569; cursor: not-allowed; box-shadow: none;" disabled>
-      🔒 Próximamente
-    </button>
+
+    <!-- CARD 2: Shawn Mendes -->
+    <div class="song-card cyan-glow">
+      <div class="card-cover">
+        <img src="Canciones/Shawn_Mendes_Stitches/cover.jpg"
+             alt="Stitches - Shawn Mendes">
+        <div class="card-cover-overlay"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-intermediate">Intermedio</span>
+          <span class="level-badge badge-questions">10 preguntas</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Stitches</div>
+          <div class="card-artist cyan">Shawn Mendes</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item">
+            <span class="topic-emoji">📖</span>
+            <span><b>Vocabulario:</b> Metáforas médicas (Stitches, Sore)</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">💡</span>
+            <span><b>Gramática:</b> Verbos de percepción y forma base</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">🔇</span>
+            <span><b>Pronunciación:</b> KN muda (knife, knees, know)</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">🇺🇸</span>
+            <span><b>Idioms:</b> "Reap what you sow", "See red"</span>
+          </div>
+        </div>
+        <a href="Canciones/Shawn_Mendes_Stitches/quiz.html" class="btn-quiz cyan">
+          🧠 Empezar Quiz
+        </a>
+      </div>
+    </div>
+
+    <!-- CARD 3: Coldplay (próximamente) -->
+    <div class="song-card gray-glow">
+      <div class="card-cover" style="background: #0f1724;">
+        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.5);"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-basic">Básico</span>
+          <span class="level-badge badge-questions">Próximamente</span>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:0.3;">🔒</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Yellow</div>
+          <div class="card-artist" style="color:rgba(255,255,255,0.35);">Coldplay</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item">
+            <span class="topic-emoji">📖</span>
+            <span><b>Vocabulario:</b> Adjetivos de luz y brillo</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">💡</span>
+            <span><b>Comprensión:</b> Metáforas poéticas simples</span>
+          </div>
+        </div>
+        <button class="btn-quiz locked" disabled>🔒 Próximamente</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FEATURES SECTION -->
+  <div class="section-header">
+    <h2 class="section-title">⚡ ¿Por qué funciona?</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🔊</div>
+      <div class="feature-title">Audio Nativo</div>
+      <div class="feature-desc">Escucha cada verso en voz inglesa nativa. Entrena tu oído directamente desde la canción.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎮</div>
+      <div class="feature-title">Sistema de Vidas</div>
+      <div class="feature-desc">3 corazones por quiz. El riesgo aumenta la retención — el cerebro aprende más bajo presión positiva.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⏱️</div>
+      <div class="feature-title">Timer de 30 segundos</div>
+      <div class="feature-desc">Cada pregunta tiene tiempo limitado. La urgencia activa la dopamina y mejora la memoria a largo plazo.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔥</div>
+      <div class="feature-title">Combo Multiplier</div>
+      <div class="feature-desc">Racha de 3+ = doble XP. Racha de 5+ = triple XP. Las rachas crean el "flow" del aprendizaje.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🃏</div>
+      <div class="feature-title">Tarjetas de Vocabulario</div>
+      <div class="feature-desc">Flip card interactiva después de cada pregunta. Repaso inmediato = consolidación en memoria.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💡</div>
+      <div class="feature-title">Sistema de Pistas</div>
+      <div class="feature-desc">Elimina 2 opciones incorrectas si te atasca (-5 XP). Apoyo sin darte la respuesta directa.</div>
+    </div>
   </div>
 
 </div>
 
 <footer>
-  <p>Aprende Inglés y Música con Micha © 2026</p>
-  <p style="margin-top: 6px;">
-    ¿Quieres entrenar tu oído a ciegas frase por frase? Accede a nuestro 
-    <a href="player.html">Estudio de Escucha Activa</a>.
-  </p>
+  <p>Aprende Inglés con Música · Micha © 2026 · Hecho con <span>❤️ + 🎵</span></p>
+  <p style="margin-top:4px;">Powered by Web Speech API · AudioContext · Vanilla JS</p>
 </footer>
 
+<script>
+// === PARTICLES BACKGROUND ===
+const pCanvas = document.getElementById('particles-canvas');
+const pCtx = pCanvas.getContext('2d');
+let particles = [];
+
+function initParticles() {
+  pCanvas.width = window.innerWidth;
+  pCanvas.height = window.innerHeight;
+  particles = [];
+  const count = Math.min(60, Math.floor(window.innerWidth / 18));
+  const syms = ['♪','♫','♩','♬','✦','·','✿','⁕'];
+  const colors = ['#38bdf8','#818cf8','#c084fc','#ff8da1','#d6b3ff'];
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * pCanvas.width,
+      y: Math.random() * pCanvas.height,
+      sym: syms[Math.floor(Math.random() * syms.length)],
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: 8 + Math.random() * 14,
+      opacity: 0.03 + Math.random() * 0.07,
+      vy: -0.15 - Math.random() * 0.25,
+      vx: (Math.random() - 0.5) * 0.1,
+      pulse: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+function animateParticles() {
+  pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+  particles.forEach(p => {
+    p.y += p.vy; p.x += p.vx; p.pulse += 0.015;
+    if (p.y < -30) { p.y = pCanvas.height + 10; p.x = Math.random() * pCanvas.width; }
+    const alpha = p.opacity * (0.7 + 0.3 * Math.sin(p.pulse));
+    pCtx.globalAlpha = alpha;
+    pCtx.fillStyle = p.color;
+    pCtx.font = `${p.size}px serif`;
+    pCtx.fillText(p.sym, p.x, p.y);
+  });
+  pCtx.globalAlpha = 1;
+  requestAnimationFrame(animateParticles);
+}
+
+window.addEventListener('resize', initParticles);
+
+window.addEventListener('DOMContentLoaded', () => {
+  initParticles();
+  animateParticles();
+});
+</script>
 </body>
 </html>

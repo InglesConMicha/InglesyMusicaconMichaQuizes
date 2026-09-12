@@ -3,25 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz — Hate That I Made You Love Me · Ariana Grande 🌸</title>
-  <meta name="description" content="Pon a prueba tu inglés con la canción Hate That I Made You Love Me de Ariana Grande. Vocabulario, gramática, pronunciación y más.">
+  <title>Quiz — Stitches · Shawn Mendes 🎵</title>
+  <meta name="description" content="Pon a prueba tu inglés con la canción Stitches de Shawn Mendes. Vocabulario, gramática, pronunciación y más.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff8da1' stroke-width='2.5'%3E%3Cpath d='M9 18V5l12-2v13'%3E%3C/path%3E%3Ccircle cx='6' cy='18' r='3' fill='%23d6b3ff'%3E%3C/circle%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2.5'%3E%3Cpath d='M9 18V5l12-2v13'%3E%3C/path%3E%3Ccircle cx='6' cy='18' r='3' fill='%2338bdf8'%3E%3C/circle%3E%3C/svg%3E">
   <style>
     :root {
-      --bg: #08030f;
-      --accent: #ff8da1;
-      --accent2: #d6b3ff;
-      --accent3: #f472b6;
+      --bg: #060b14;
+      --accent: #00d4ff;
+      --accent2: #7c3aed;
+      --accent3: #06b6d4;
       --success: #10b981;
-      --error: #fb7185;
-      --warning: #fbbf24;
-      --card: rgba(18, 8, 30, 0.88);
-      --border: rgba(255, 141, 161, 0.18);
-      --text: #fdf2f8;
-      --muted: #9ca3af;
+      --error: #ef4444;
+      --warning: #f59e0b;
+      --card: rgba(10, 20, 40, 0.85);
+      --border: rgba(0, 212, 255, 0.15);
+      --text: #f0f9ff;
+      --muted: #64748b;
+      --lives: #ef4444;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,27 +35,21 @@
       overflow-x: hidden;
     }
 
-    /* Gradient BG */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background: radial-gradient(ellipse at 20% 30%, rgba(124,58,237,0.18) 0%, transparent 50%),
-                  radial-gradient(ellipse at 80% 70%, rgba(255,141,161,0.12) 0%, transparent 50%);
-      pointer-events: none; z-index: 0;
-    }
-
+    /* === PARTICLES CANVAS === */
     #particles-canvas {
       position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none; z-index: 0;
     }
 
+    /* === CONFETTI CANVAS === */
     #confetti-canvas {
       position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none; z-index: 999;
     }
 
+    /* === MAIN LAYOUT === */
     .page-wrapper {
       position: relative; z-index: 1;
       min-height: 100vh;
@@ -63,7 +58,7 @@
       padding: 20px 16px 40px;
     }
 
-    /* === HERO === */
+    /* === HERO COVER === */
     .hero-cover {
       width: 100%; max-width: 740px;
       height: 200px;
@@ -71,19 +66,21 @@
       overflow: hidden;
       position: relative;
       margin-bottom: 24px;
-      box-shadow: 0 20px 60px rgba(255,141,161,0.28);
+      box-shadow: 0 20px 60px rgba(0,212,255,0.25);
     }
 
     .hero-cover img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center 40%;
+      object-fit: cover;
+      object-position: center 30%;
     }
 
     .hero-cover-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(8,3,15,0.92) 0%, rgba(8,3,15,0.45) 60%, transparent 100%);
+      background: linear-gradient(to right, rgba(6,11,20,0.9) 0%, rgba(6,11,20,0.4) 60%, transparent 100%);
       display: flex; flex-direction: column;
-      justify-content: center; padding: 28px;
+      justify-content: center;
+      padding: 28px;
     }
 
     .hero-song-label {
@@ -94,9 +91,9 @@
 
     .hero-song-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.6rem; font-weight: 900;
-      color: #fff; line-height: 1.2;
-      text-shadow: 0 2px 20px rgba(255,141,161,0.5);
+      font-size: 2rem; font-weight: 900;
+      color: #fff; line-height: 1.1;
+      text-shadow: 0 2px 20px rgba(0,212,255,0.4);
     }
 
     .hero-song-artist {
@@ -113,8 +110,7 @@
       border: 1px solid var(--border);
       border-radius: 28px;
       padding: 28px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,141,161,0.04),
-                  inset 0 1px 0 rgba(255,255,255,0.04);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,212,255,0.05), inset 0 1px 0 rgba(255,255,255,0.05);
       position: relative;
       overflow: hidden;
     }
@@ -122,7 +118,7 @@
     .quiz-card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(to right, transparent, var(--accent), var(--accent2), var(--accent3), transparent);
+      background: linear-gradient(to right, transparent, var(--accent), var(--accent2), transparent);
     }
 
     /* === STATUS BAR === */
@@ -131,15 +127,21 @@
       margin-bottom: 20px; gap: 8px; flex-wrap: wrap;
     }
 
-    .lives-display { display: flex; gap: 4px; align-items: center; }
+    .lives-display {
+      display: flex; gap: 4px; align-items: center;
+    }
 
     .heart {
       font-size: 1.3rem;
-      filter: drop-shadow(0 0 6px rgba(239,68,68,0.7));
       transition: transform 0.3s ease, opacity 0.3s ease;
+      filter: drop-shadow(0 0 6px rgba(239,68,68,0.7));
     }
 
-    .heart.lost { opacity: 0.18; filter: none; transform: scale(0.8); }
+    .heart.lost {
+      opacity: 0.2;
+      filter: none;
+      transform: scale(0.8);
+    }
 
     .badge {
       display: flex; align-items: center; gap: 5px;
@@ -149,31 +151,38 @@
 
     .badge-streak {
       background: rgba(239,68,68,0.12);
-      border: 1px solid rgba(239,68,68,0.25); color: #f87171;
+      border: 1px solid rgba(239,68,68,0.25);
+      color: #f87171;
     }
 
     .badge-xp {
       background: rgba(245,158,11,0.12);
-      border: 1px solid rgba(245,158,11,0.25); color: #fbbf24;
+      border: 1px solid rgba(245,158,11,0.25);
+      color: #fbbf24;
     }
 
     .badge-combo {
-      background: rgba(214,179,255,0.12);
-      border: 1px solid rgba(214,179,255,0.3); color: var(--accent2);
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.3);
+      color: #a78bfa;
       display: none;
     }
 
     /* === PROGRESS === */
-    .progress-section { margin-bottom: 20px; }
+    .progress-section {
+      margin-bottom: 20px;
+    }
 
     .progress-header {
       display: flex; justify-content: space-between;
-      font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-bottom: 6px;
+      font-size: 0.8rem; font-weight: 600; color: var(--muted);
+      margin-bottom: 6px;
     }
 
     .progress-track {
       width: 100%; height: 6px;
-      background: rgba(255,255,255,0.04); border-radius: 6px; overflow: hidden;
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px; overflow: hidden;
     }
 
     .progress-fill {
@@ -185,26 +194,38 @@
     }
 
     .progress-fill::after {
-      content: ''; position: absolute; right: 0; top: 50%;
+      content: '';
+      position: absolute; right: 0; top: 50%;
       transform: translateY(-50%);
       width: 10px; height: 10px;
-      background: var(--accent); border-radius: 50%;
+      background: var(--accent);
+      border-radius: 50%;
       box-shadow: 0 0 8px var(--accent);
     }
 
     /* === TIMER === */
     .timer-ring-wrap {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px;
     }
 
-    .timer-ring-container { position: relative; width: 52px; height: 52px; flex-shrink: 0; }
+    .timer-ring-container {
+      position: relative; width: 52px; height: 52px; flex-shrink: 0;
+    }
 
-    .timer-ring { transform: rotate(-90deg); }
-    .timer-ring-bg { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 4; }
+    .timer-ring {
+      transform: rotate(-90deg);
+    }
+
+    .timer-ring-bg {
+      fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 4;
+    }
+
     .timer-ring-fg {
       fill: none; stroke: var(--accent); stroke-width: 4;
       stroke-linecap: round;
-      stroke-dasharray: 126; stroke-dashoffset: 0;
+      stroke-dasharray: 126;
+      stroke-dashoffset: 0;
       transition: stroke-dashoffset 1s linear, stroke 0.5s ease;
     }
 
@@ -212,15 +233,16 @@
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.9rem; font-weight: 800; color: var(--accent);
+      font-size: 0.9rem; font-weight: 800;
+      color: var(--accent);
     }
 
     /* === AUDIO BUTTON === */
     .btn-audio {
       flex: 1;
       display: flex; align-items: center; gap: 8px;
-      background: rgba(255,141,161,0.08);
-      border: 1px solid rgba(255,141,161,0.2);
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
       color: var(--accent);
       padding: 10px 16px; border-radius: 12px;
       font-size: 0.85rem; font-weight: 600;
@@ -229,47 +251,31 @@
     }
 
     .btn-audio:hover {
-      background: rgba(255,141,161,0.15);
-      border-color: rgba(255,141,161,0.4);
+      background: rgba(0,212,255,0.15);
+      border-color: rgba(0,212,255,0.4);
       transform: scale(1.02);
     }
 
     .btn-audio.playing {
-      background: rgba(255,141,161,0.2);
+      background: rgba(0,212,255,0.2);
       border-color: var(--accent);
-      animation: pulse-border-pink 1.5s infinite;
+      animation: pulse-border 1.5s infinite;
     }
 
-    @keyframes pulse-border-pink {
-      0%,100% { box-shadow: 0 0 0 0 rgba(255,141,161,0.4); }
-      50% { box-shadow: 0 0 0 6px rgba(255,141,161,0); }
+    @keyframes pulse-border {
+      0%,100% { box-shadow: 0 0 0 0 rgba(0,212,255,0.3); }
+      50% { box-shadow: 0 0 0 6px rgba(0,212,255,0); }
     }
 
-    /* === HINT === */
-    .btn-hint {
-      background: rgba(245,158,11,0.08);
-      border: 1px solid rgba(245,158,11,0.2);
-      color: #fbbf24; border-radius: 10px;
-      padding: 8px 14px; font-size: 0.8rem; font-weight: 700;
-      cursor: pointer; font-family: 'Outfit', sans-serif;
-      transition: all 0.2s ease; white-space: nowrap;
-    }
-
-    .btn-hint:hover:not(:disabled) {
-      background: rgba(245,158,11,0.15); transform: scale(1.02);
-    }
-
-    .btn-hint:disabled { opacity: 0.3; cursor: not-allowed; }
-
-    /* === QUESTION CARD === */
+    /* === QUESTION AREA === */
     #quiz-area { flex: 1; }
 
     .question-card { display: flex; flex-direction: column; gap: 14px; }
 
     .category-chip {
       align-self: flex-start;
-      background: rgba(255,141,161,0.1);
-      border: 1px solid rgba(255,141,161,0.25);
+      background: rgba(0,212,255,0.1);
+      border: 1px solid rgba(0,212,255,0.25);
       color: var(--accent);
       padding: 3px 10px; border-radius: 8px;
       font-size: 0.7rem; font-weight: 800;
@@ -283,12 +289,13 @@
     }
 
     .context-verse {
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.4);
       border-left: 3px solid var(--accent);
       border-radius: 0 12px 12px 0;
       padding: 12px 16px;
       font-size: 0.95rem; font-style: italic;
-      color: rgba(253,242,248,0.8); line-height: 1.5;
+      color: rgba(240,249,255,0.8);
+      line-height: 1.5;
     }
 
     .context-verse strong { color: var(--accent); font-style: normal; }
@@ -300,8 +307,8 @@
     }
 
     .option-btn {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
       color: var(--text);
       padding: 14px 18px; border-radius: 14px;
       font-size: 0.95rem; font-weight: 600;
@@ -313,22 +320,23 @@
     }
 
     .option-btn::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,141,161,0.05) 0%, transparent 100%);
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,212,255,0.05) 0%, transparent 100%);
       opacity: 0; transition: opacity 0.2s;
     }
 
     .option-btn:hover:not(:disabled)::before { opacity: 1; }
 
     .option-btn:hover:not(:disabled) {
-      background: rgba(255,141,161,0.08);
-      border-color: rgba(255,141,161,0.3);
+      background: rgba(0,212,255,0.08);
+      border-color: rgba(0,212,255,0.3);
       transform: translateX(5px);
     }
 
     .option-letter {
       width: 34px; height: 34px; border-radius: 50%;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.06);
       display: flex; align-items: center; justify-content: center;
       font-size: 0.85rem; font-weight: 800;
       color: var(--accent); flex-shrink: 0;
@@ -342,19 +350,19 @@
       transform: scale(1.01);
     }
 
-    .option-btn.correct .option-letter { background: var(--success); color: #052e16; }
+    .option-btn.correct .option-letter {
+      background: var(--success); color: #052e16;
+    }
 
     .option-btn.incorrect {
-      background: rgba(251,113,133,0.12) !important;
+      background: rgba(239,68,68,0.12) !important;
       border-color: var(--error) !important;
-      color: #fda4af !important;
+      color: #fca5a5 !important;
       animation: shake 0.4s ease;
     }
 
-    .option-btn.incorrect .option-letter { background: var(--error); color: #4c0519; }
-
-    .option-btn.eliminated {
-      opacity: 0.2; pointer-events: none; text-decoration: line-through;
+    .option-btn.incorrect .option-letter {
+      background: var(--error); color: #450a0a;
     }
 
     @keyframes shake {
@@ -365,7 +373,25 @@
       80% { transform: translateX(5px); }
     }
 
-    /* === FEEDBACK === */
+    /* === HINT BUTTON === */
+    .btn-hint {
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.2);
+      color: #fbbf24; border-radius: 10px;
+      padding: 8px 14px; font-size: 0.8rem; font-weight: 700;
+      cursor: pointer; font-family: 'Outfit', sans-serif;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-hint:hover:not(:disabled) {
+      background: rgba(245,158,11,0.15);
+      transform: scale(1.02);
+    }
+
+    .btn-hint:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* === FEEDBACK BOX === */
     .feedback-box {
       margin-top: 12px; padding: 14px 16px;
       border-radius: 14px; font-size: 0.9rem; line-height: 1.6;
@@ -384,16 +410,18 @@
     }
 
     .feedback-box.incorrect {
-      background: rgba(251,113,133,0.08);
-      border: 1px solid rgba(251,113,133,0.2);
-      color: #fda4af; display: block;
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+      color: #fca5a5; display: block;
     }
 
     .feedback-emoji { font-size: 1.6rem; display: block; margin-bottom: 6px; }
 
-    /* === VOCAB FLIP === */
+    /* === FLIP CARD VOCAB === */
     .vocab-flip-wrap {
-      margin-top: 12px; perspective: 800px; display: none;
+      margin-top: 12px;
+      perspective: 800px;
+      display: none;
     }
 
     .vocab-flip-wrap.visible { display: block; animation: slideUp 0.4s ease; }
@@ -403,13 +431,15 @@
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-      cursor: pointer; border-radius: 12px;
+      cursor: pointer;
+      border-radius: 12px;
     }
 
     .vocab-flip.flipped { transform: rotateY(180deg); }
 
     .vocab-face {
-      position: absolute; inset: 0; border-radius: 12px;
+      position: absolute; inset: 0;
+      border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
       font-weight: 700; font-size: 0.9rem;
       backface-visibility: hidden;
@@ -418,16 +448,18 @@
     }
 
     .vocab-face-front {
-      background: rgba(255,141,161,0.08);
-      border: 1px solid rgba(255,141,161,0.2);
-      color: var(--accent); flex-direction: column; gap: 4px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      color: var(--accent);
+      flex-direction: column; gap: 4px;
     }
 
     .vocab-face-back {
-      background: rgba(214,179,255,0.1);
-      border: 1px solid rgba(214,179,255,0.25);
-      color: var(--accent2);
-      transform: rotateY(180deg); text-align: center;
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.25);
+      color: #a78bfa;
+      transform: rotateY(180deg);
+      text-align: center;
     }
 
     .vocab-hint-label {
@@ -435,7 +467,7 @@
       letter-spacing: 0.1em; opacity: 0.6;
     }
 
-    /* === FOOTER === */
+    /* === FOOTER ACTIONS === */
     .footer-actions {
       display: flex; justify-content: space-between;
       align-items: center; margin-top: 20px; gap: 10px;
@@ -456,31 +488,33 @@
     .btn-back:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
 
     .btn-next {
-      background: linear-gradient(135deg, var(--accent3), var(--accent), var(--accent2));
-      color: #08030f; border: none;
+      background: linear-gradient(135deg, var(--accent3), var(--accent));
+      color: #060b14; border: none;
       padding: 14px 28px; border-radius: 14px;
       font-size: 1rem; font-weight: 800;
       cursor: pointer; display: inline-flex;
       align-items: center; gap: 8px;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      box-shadow: 0 4px 20px rgba(255,141,161,0.35);
+      box-shadow: 0 4px 20px rgba(0,212,255,0.3);
       transition: all 0.2s ease;
     }
 
     .btn-next:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(255,141,161,0.55);
+      box-shadow: 0 8px 30px rgba(0,212,255,0.5);
     }
 
     .btn-next:disabled {
-      opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none;
+      opacity: 0.3; cursor: not-allowed;
+      transform: none; box-shadow: none;
     }
 
-    /* === RESULTS === */
+    /* === RESULTS SCREEN === */
     .results-screen {
       text-align: center;
       display: flex; flex-direction: column;
-      align-items: center; gap: 20px; padding: 10px 0;
+      align-items: center; gap: 20px;
+      padding: 10px 0;
     }
 
     .medal-display { font-size: 5rem; animation: bounce-in 0.6s cubic-bezier(0.34,1.56,0.64,1); }
@@ -495,7 +529,9 @@
       font-size: 1.8rem; font-weight: 900; color: #fff;
     }
 
-    .score-ring { position: relative; width: 140px; height: 140px; }
+    .score-ring {
+      position: relative; width: 140px; height: 140px;
+    }
 
     .score-ring svg { transform: rotate(-90deg); }
 
@@ -507,41 +543,46 @@
 
     .score-percent {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 2.2rem; font-weight: 900; color: var(--accent);
+      font-size: 2.2rem; font-weight: 900;
+      color: var(--accent);
     }
 
     .score-fraction { font-size: 0.75rem; color: var(--muted); font-weight: 600; }
 
     .stats-grid {
-      display: grid; grid-template-columns: repeat(3,1fr);
+      display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 12px; width: 100%;
     }
 
     .stat-block {
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px; padding: 14px; text-align: center;
+      border-radius: 14px; padding: 14px;
+      text-align: center;
     }
 
     .stat-number {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.6rem; font-weight: 900; color: var(--accent);
+      font-size: 1.6rem; font-weight: 900;
+      color: var(--accent);
     }
 
     .stat-label { font-size: 0.72rem; color: var(--muted); font-weight: 600; margin-top: 4px; }
 
     .results-message {
-      color: rgba(253,242,248,0.7);
-      font-size: 0.95rem; line-height: 1.6; max-width: 440px;
+      color: rgba(240,249,255,0.7);
+      font-size: 0.95rem; line-height: 1.6;
+      max-width: 440px;
     }
 
     .results-buttons {
-      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      display: flex; gap: 12px; flex-wrap: wrap;
+      justify-content: center;
     }
 
     .btn-retry {
       background: transparent;
-      border: 1px solid rgba(255,141,161,0.25);
+      border: 1px solid rgba(0,212,255,0.25);
       color: var(--accent);
       padding: 12px 22px; border-radius: 12px;
       font-size: 0.9rem; font-weight: 700;
@@ -550,14 +591,22 @@
     }
 
     .btn-retry:hover {
-      background: rgba(255,141,161,0.1); border-color: var(--accent);
+      background: rgba(0,212,255,0.1);
+      border-color: var(--accent);
     }
 
-    /* === TOAST === */
+    /* === GAME OVER SCREEN === */
+    .gameover-screen {
+      text-align: center;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 18px; padding: 20px 0;
+    }
+
+    /* === FLOATING TOAST === */
     #toast {
       position: fixed; top: 20px; left: 50%;
       transform: translateX(-50%) translateY(-80px);
-      background: rgba(18,8,30,0.95);
+      background: rgba(10,20,40,0.95);
       border: 1px solid var(--border);
       color: var(--text); border-radius: 14px;
       padding: 12px 24px; font-weight: 700; font-size: 0.95rem;
@@ -568,16 +617,19 @@
 
     #toast.show { transform: translateX(-50%) translateY(0); }
 
-    /* === GAME OVER === */
-    .gameover-screen {
-      text-align: center; display: flex; flex-direction: column;
-      align-items: center; gap: 18px; padding: 20px 0;
+    /* === OPTION HINT ELIMINATED === */
+    .option-btn.eliminated {
+      opacity: 0.25;
+      pointer-events: none;
+      text-decoration: line-through;
     }
 
+    /* === RESPONSIVE === */
     @media (max-width: 480px) {
       .hero-cover { height: 140px; }
-      .hero-song-title { font-size: 1.2rem; }
+      .hero-song-title { font-size: 1.4rem; }
       .question-text { font-size: 1.1rem; }
+      .stats-grid { grid-template-columns: repeat(3,1fr); }
     }
   </style>
 </head>
@@ -585,17 +637,18 @@
 
 <canvas id="particles-canvas"></canvas>
 <canvas id="confetti-canvas"></canvas>
+
 <div id="toast">Combo</div>
 
 <div class="page-wrapper">
 
   <!-- HERO COVER -->
   <div class="hero-cover">
-    <img src="cover.jpg" alt="Hate That I Made You Love Me - Ariana Grande">
+    <img src="cover.jpg" alt="Stitches - Shawn Mendes">
     <div class="hero-cover-overlay">
       <div class="hero-song-label">English Music Quiz</div>
-      <div class="hero-song-title">Hate That I Made You Love Me</div>
-      <div class="hero-song-artist">Ariana Grande</div>
+      <div class="hero-song-title">Stitches</div>
+      <div class="hero-song-artist">Shawn Mendes</div>
     </div>
   </div>
 
@@ -619,7 +672,7 @@
     <!-- PROGRESS -->
     <div class="progress-section">
       <div class="progress-header">
-        <span id="progress-text">Pregunta 1 de 15</span>
+        <span id="progress-text">Pregunta 1 de 10</span>
         <span id="progress-pct">0%</span>
       </div>
       <div class="progress-track">
@@ -627,7 +680,7 @@
       </div>
     </div>
 
-    <!-- TIMER + AUDIO + HINT -->
+    <!-- TIMER + AUDIO -->
     <div class="timer-ring-wrap">
       <div class="timer-ring-container">
         <svg class="timer-ring" width="52" height="52" viewBox="0 0 52 52">
@@ -642,232 +695,175 @@
       <button class="btn-hint" id="btn-hint" onclick="useHint()">Pista <span style="opacity:0.6;font-size:0.7em">(-5 XP)</span></button>
     </div>
 
-    <!-- QUIZ AREA -->
+    <!-- QUIZ CONTENT -->
     <div id="quiz-area"></div>
 
     <!-- FOOTER -->
     <div class="footer-actions">
       <a href="../../index.html" class="btn-back">Catálogo</a>
-      <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>Continuar →</button>
+      <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>
+        Continuar →
+      </button>
     </div>
 
   </div>
+
 </div>
 
 <script>
 // =============================================
-//  QUESTIONS DATA — Ariana Grande
+//  QUESTIONS DATA
 // =============================================
 const questions = [
   {
-    category: 'Vocabulario · Adverbios',
-    question: '¿Qué significa el adverbio "barely" en la canción?',
-    verse: 'I barely knew ya, barely knew ya',
+    category: 'Vocabulario',
+    question: '¿Qué significa la palabra "Stitches" en el título y coro?',
+    verse: 'And now that I\'m without your kisses, I\'ll be needing stitches',
+    image: null,
     options: [
-      'Completamente / del todo',
-      'Apenas / casi no',
-      'Siempre / constantemente',
-      'Nunca / jamás'
+      'Besos y caricias',
+      'Puntos de sutura / coser una herida',
+      'Abrazos cálidos',
+      'Zapatos nuevos'
     ],
     correctIndex: 1,
-    vocab: { word: 'BARELY', translation: 'Apenas / Casi no 🔅', example: '"I barely knew you" = Apenas te conocía' },
-    explanation: '<b>"Barely"</b> es un adverbio de grado que significa "apenas" o "casi no". Ejemplo: "She barely slept" = Apenas durmió. Es muy frecuente en inglés conversacional.'
+    vocab: { word: 'STITCHES', translation: 'Puntos de sutura', example: '"I\'ll be needing stitches" = Voy a necesitar puntos de sutura' },
+    explanation: '<b>"Stitches"</b> son los puntos de sutura quirúrgicos. Aquí es una metáfora del dolor de una ruptura amorosa — como si el desamor fuera una herida que necesita ser cosida.'
   },
   {
-    category: 'Comprensión · Causativa',
-    question: '¿Qué estructura gramatical usa el título "Hate That I MADE You Love Me"?',
-    verse: 'I hate that I made you love me',
+    category: 'Modismos · Idioms',
+    question: '¿Qué significa el proverbio "Reap what I sow" en la canción?',
+    verse: 'Your bitter heart cold to the touch / Now I\'m gonna reap what I sow',
+    image: null,
     options: [
-      'Verbo modal + infinitivo',
-      'Causativa: MAKE + objeto + verbo base (forzar/provocar)',
-      'Presente perfecto progresivo',
-      'Condicional tipo 2'
+      'Voy a sembrar plantas en el jardín',
+      'Voy a cosechar lo que sembré (afrontar consecuencias)',
+      'Voy a olvidar todo lo que pasó',
+      'Voy a ganar mucho dinero'
     ],
     correctIndex: 1,
-    vocab: { word: 'MAKE + OBJ + VERB BASE', translation: 'Estructura causativa 🔗', example: '"Make me laugh" / "Made you love me" = Hizo que me amasen' },
-    explanation: '<b>Make + objeto + verbo base</b> es la estructura causativa en inglés: indica que alguien <i>fuerza o provoca</i> que otra persona haga algo. "I made you love me" = Hice que tú me amaras.'
+    vocab: { word: 'REAP WHAT YOU SOW', translation: 'Cosechas lo que siembras', example: '"You reap what you sow" = Las consecuencias de tus acciones te alcanzan' },
+    explanation: '<b>"You reap what you sow"</b> es el equivalente al proverbio español "cosechas lo que siembras". Se usa para decir que las consecuencias de tus actos eventualmente te alcanzan.'
   },
   {
-    category: 'Pronunciación · Silent B',
-    question: '¿Cuál es la pronunciación correcta de "tomb" (tumba)?',
-    verse: '"...love you till I\'m in my tomb"',
+    category: 'Pronunciación · Silent Letters',
+    question: '¿Qué letra es MUDA en las palabras "knife" y "knees"?',
+    verse: 'Your words cut deeper than a knife / Falling onto my knees',
+    image: null,
     options: [
-      '/toʊmb/ — pronunciando la B final',
-      '/tuːm/ — la B final es muda',
-      '/tɒmb/ — pronunciando con "o" corta',
-      '/tʌmb/ — como "thumb"'
+      'La letra "N"',
+      'La letra "K"',
+      'La letra "E"',
+      'La letra "I"'
     ],
     correctIndex: 1,
-    vocab: { word: 'SILENT -MB', translation: 'La B es muda en -MB 🔇', example: 'tomb /tuːm/ · bomb /bɒm/ · thumb /θʌm/ · climb /klaɪm/' },
-    explanation: 'En inglés, la combinación <b>"-mb"</b> al final de palabras tiene la <b>B muda</b>: tomb /tuːm/, bomb /bɒm/, thumb /θʌm/, climb /klaɪm/, lamb /læm/. ¡Patrón muy común!'
+    vocab: { word: 'KN- SILENT K', translation: 'La K es muda', example: 'knife /naɪf/ · knees /niːz/ · know /noʊ/ · knight /naɪt/' },
+    explanation: 'En combinaciones <b>"kn-"</b> al inicio de palabras en inglés (knife, knees, know, knight, kneel), la <b>K siempre es muda</b>. Solo se pronuncia el sonido /n/.'
   },
   {
-    category: 'Modismos · Slang Americano',
-    question: '¿Qué significa el modismo americano "be down to" en la canción?',
-    verse: '"You were down to love me"',
+    category: 'Phrasal Verbs',
+    question: '¿Qué significa el phrasal verb "go under" en este contexto?',
+    verse: 'Got a feeling that I\'m going under, but I know that I\'ll make it out alive',
+    image: null,
     options: [
-      'Estar triste por algo',
-      'Estar dispuesto a / tener ganas de hacer algo',
-      'Estar físicamente agachado',
-      'Haber terminado de hacer algo'
+      'Hundirse o sucumbir emocionalmente',
+      'Caminar por debajo de un puente',
+      'Dormirse profundamente',
+      'Bailar en el suelo'
     ],
-    correctIndex: 1,
-    vocab: { word: 'BE DOWN TO', translation: 'Estar dispuesto a 🤙', example: '"Are you down to hang out?" = ¿Tienes ganas de salir?' },
-    explanation: '<b>"Be down to"</b> es slang americano muy común que significa "estar dispuesto a" o "tener ganas de". "She\'s down to go" = Ella quiere ir / Está dispuesta a ir.'
+    correctIndex: 0,
+    vocab: { word: 'GO UNDER', translation: 'Hundirse / Sucumbir', example: '"I\'m going under" = Me estoy hundiendo (emocionalmente)' },
+    explanation: '<b>"Go under"</b> en sentido literal es hundirse en el agua, pero figurativamente describe sentirse abrumado, ahogado en dolor, o sucumbir a una crisis emocional.'
   },
   {
-    category: 'Vocabulario · Emociones',
-    question: '¿Qué matiz emocional tiene "I hate that..." vs "I dislike that..."?',
-    verse: 'I hate that I made you love me',
+    category: 'Gramática · Verbos de Percepción',
+    question: 'En "You watch me bleed", ¿por qué "bleed" va en forma base (infinitivo)?',
+    verse: 'You watch me bleed until I can\'t breathe',
+    image: null,
     options: [
-      'Son sinónimos exactos, sin diferencia',
-      '"Hate" expresa odio/aversión intensa; "dislike" es simplemente no gustar',
-      '"Dislike" es más fuerte e intenso que "hate"',
-      '"Hate" es formal; "dislike" es coloquial'
+      'Porque después de verbos de percepción (watch/see/hear) se usa objeto + forma base',
+      'Porque es un tiempo pasado irregular',
+      'Porque es un error gramatical en canciones',
+      'Porque es un imperativo directo'
     ],
-    correctIndex: 1,
-    vocab: { word: 'HATE vs DISLIKE', translation: 'Gradación de aversión 💢', example: 'I dislike broccoli / I hate being lied to' },
-    explanation: '<b>"Hate"</b> expresa una aversión intensa, incluso visceral. <b>"Dislike"</b> es simplemente "no gustar". La diferencia es de intensidad: hate es mucho más fuerte y emocional.'
+    correctIndex: 0,
+    vocab: { word: 'PERCEPTION VERBS', translation: 'Verbos de percepción', example: 'watch/see/hear/feel + objeto + infinitivo base' },
+    explanation: 'Los verbos de percepción <b>watch, see, hear, feel</b> usan la estructura: <i>Verbo + Objeto + Verbo Base</i>. → <i>"You watch me bleed"</i> = Tú me miras desangrarme.'
   },
   {
-    category: 'Gramática · Past Simple',
-    question: '¿Por qué la canción usa "I barely knew ya" en pasado simple?',
-    verse: 'I barely knew ya, barely knew ya',
+    category: 'Vocabulario · Similes',
+    question: '¿Qué describe la metáfora "like a moth drawn to a flame"?',
+    verse: 'Just like a moth drawn to a flame, oh you lured me in...',
+    image: null,
     options: [
-      'Porque el pasado simple describe una acción habitual del presente',
-      'Porque describe una situación en un momento pasado específico (al inicio de la relación)',
-      'Porque es un error de la cantante',
-      'Porque el inglés americano siempre usa pasado para el presente'
+      'Sentir mucho calor durante el verano',
+      'Una atracción irresistible hacia algo peligroso o destructivo',
+      'Tener miedo a la oscuridad',
+      'Comprar ropa nueva'
     ],
     correctIndex: 1,
-    vocab: { word: 'PAST SIMPLE vs PRESENT', translation: 'Referencia temporal pasada ⏪', example: '"I knew you then" (pasado) vs "I know you now" (presente)' },
-    explanation: 'El <b>Past Simple</b> ("knew") se usa aquí para describir el estado de la relación en un punto pasado específico — al inicio. Contrasta con el estado actual de la relación.'
+    vocab: { word: 'LIKE A MOTH TO A FLAME', translation: 'Atracción fatal / irresistible', example: '"He was like a moth to a flame" = Era una atracción que lo destruía' },
+    explanation: '<b>"Like a moth to a flame"</b> describe una atracción fatal e incontrolable. La polilla no puede evitar volar hacia la llama que la quemará — igual que el protagonista con esa persona.'
   },
   {
-    category: 'Connected Speech · Contracciones',
-    question: '"Ya" en "barely knew ya" es una contracción coloquial de:',
-    verse: 'I barely knew ya, barely knew ya',
+    category: 'Modismos · Slang',
+    question: '¿Qué significa la expresión "see red" en "I\'m left seeing red"?',
+    verse: 'I\'m left seeing red on my own',
+    image: null,
     options: [
-      '"You all" (Ustedes todos)',
-      '"You" (tú/usted) en inglés hablado informal',
-      '"Your" (tu/su posesivo)',
-      '"Yeah" (sí, afirmación)'
+      'Tener los ojos irritados',
+      'Enfurecerse o perder el control por la ira',
+      'Mirar una luz roja de tráfico',
+      'Estar enamorado apasionadamente'
     ],
     correctIndex: 1,
-    vocab: { word: 'YA', translation: '"You" informal / relajado 🗣️', example: '"See ya later" = See you later = Hasta luego' },
-    explanation: '<b>"Ya"</b> es la pronunciación coloquial y relajada de <b>"you"</b> en inglés americano hablado informal. "See ya!" = "See you!" — muy común en canciones pop.'
+    vocab: { word: 'SEE RED', translation: 'Ver rojo = Cegarse de ira', example: '"I was so angry I was seeing red" = Estaba tan furioso que veía rojo' },
+    explanation: '<b>"To see red"</b> es un idiom muy común que significa estar extremadamente furioso o cegado por la ira — como si todo se tiñera de rojo de tanto enojo.'
   },
   {
-    category: 'Vocabulario · Phrasal Verbs',
-    question: '¿Qué significa "fall for someone" en contexto amoroso?',
-    verse: '"And I just watched you fall for me"',
+    category: 'Connected Speech · Slang',
+    question: '¿Qué palabras formales se contraen en "gotta get you out of my head"?',
+    verse: 'Needle and the thread, gotta get you out of my head',
+    image: null,
     options: [
-      'Caerse físicamente encima de alguien',
-      'Enamorarse de alguien / quedar atrapado emocionalmente',
-      'Engañar a alguien',
-      'Ayudar a alguien a levantarse'
+      'gotta = have got to (tener que)',
+      'gotta = go to (ir a)',
+      'gotta = get to (llegar a)',
+      'gotta = good to (bueno para)'
     ],
-    correctIndex: 1,
-    vocab: { word: 'FALL FOR', translation: 'Enamorarse / caer enamorado 💘', example: '"I fell for you the moment we met" = Me enamoré de ti en el momento que nos conocimos' },
-    explanation: '<b>"Fall for someone"</b> significa enamorarse de alguien, a menudo de forma inesperada o irresistible — como "caer" en el amor. "She fell for him instantly" = Se enamoró de él al instante.'
+    correctIndex: 0,
+    vocab: { word: 'GOTTA', translation: '"Have got to" coloquial', example: '"I gotta go" = I have got to go = Tengo que ir' },
+    explanation: '<b>"Gotta"</b> es la reducción coloquial de <i>"have got to"</i> / <i>"got to"</i> — expresa obligación o necesidad. Es muy común en el inglés hablado informal americano.'
   },
   {
-    category: 'Fonología · Reducción Vocálica',
-    question: '¿Cuál es la pronunciación real de "want to" en inglés hablado rápido?',
-    verse: '"I didn\'t want to hurt you this way"',
+    category: 'Gramática · Vocabulario',
+    question: '¿Cuál es la diferencia CORRECTA entre "breath" y "breathe"?',
+    verse: 'You watch me bleed until I can\'t breathe',
+    image: null,
     options: [
-      '/wɒnt tuː/ — pronunciando ambas palabras claramente',
-      '/wʌnə/ — reducción a "wanna"',
-      '/wɑːntʊ/ — con acento británico',
-      '/wɒntɪ/ — variante sureña'
+      'Son exactamente la misma palabra',
+      '"Breath" /brɛθ/ es el sustantivo (aliento), "Breathe" /briːð/ es el verbo (respirar)',
+      '"Breath" es el verbo y "Breathe" es el sustantivo',
+      'Ninguna de las anteriores'
     ],
     correctIndex: 1,
-    vocab: { word: 'WANT TO → WANNA', translation: 'Reducción en habla rápida 💨', example: '"I wanna go" = I want to go · "Wanna dance?" = Do you want to dance?' },
-    explanation: 'En inglés hablado informal y rápido, <b>"want to"</b> se reduce a <b>"wanna"</b> /wʌnə/. Esta reducción es universal en inglés americano coloquial y canciones pop.'
+    vocab: { word: 'BREATH vs BREATHE', translation: 'Sustantivo vs Verbo', example: 'Take a deep breath (s.) / I can\'t breathe (v.)' },
+    explanation: '<b>Breath</b> /brɛθ/ (sin "e" final) = sustantivo: el aliento, una respiración. <b>Breathe</b> /briːð/ (con "e" final) = verbo: respirar. ¡La pronunciación también cambia!'
   },
   {
-    category: 'Vocabulario · Registro',
-    question: '¿Cuál es la diferencia entre "love" y "be in love with" en inglés?',
-    verse: '"Hate that I made you love me"',
+    category: 'Comprensión Global',
+    question: '¿Cuál es el tema central que Shawn Mendes comunica en "Stitches"?',
+    verse: 'Tripping over myself / Aching, begging you to come help',
+    image: null,
     options: [
-      'Son exactamente lo mismo en todos los contextos',
-      '"Love" puede ser afecto general; "be in love with" describe un estado romántico profundo',
-      '"Be in love with" es más superficial que "love"',
-      '"Love" solo se usa para familia; "in love" solo para amigos'
+      'La emoción de iniciar una nueva relación romántica',
+      'El dolor físico y emocional visceral de una traición o ruptura amorosa',
+      'Un viaje por la carretera con amigos',
+      'Un consejo sobre cómo ahorrar dinero'
     ],
     correctIndex: 1,
-    vocab: { word: 'LOVE vs BE IN LOVE WITH', translation: 'Tipo de amor 💕', example: '"I love my dog" / "I\'m in love with her" — estado romántico intenso' },
-    explanation: '<b>"Love"</b> es afecto amplio (familiares, amigos, cosas). <b>"Be in love with"</b> describe específicamente el estado romántico apasionado — enamoramiento profundo.'
-  },
-  {
-    category: 'Gramática · Should Have',
-    question: '¿Qué estructura y significado tiene "should have + participio"?',
-    verse: '"I should\'ve never let you love me"',
-    options: [
-      'Expresa algo que se hará en el futuro',
-      'Expresa arrepentimiento sobre el pasado (algo que debió/no debió ocurrir)',
-      'Expresa una condición imposible en el presente',
-      'Expresa una recomendación para el futuro'
-    ],
-    correctIndex: 1,
-    vocab: { word: "SHOULD'VE / SHOULD HAVE", translation: 'Arrepentimiento pasado 😔', example: '"I should\'ve studied more" = Debí haber estudiado más (y no lo hice)' },
-    explanation: '<b>"Should have + participio"</b> expresa arrepentimiento o crítica sobre el pasado. "I shouldn\'t have done that" = No debí haber hecho eso. ¡Muy frecuente en canciones emotivas!'
-  },
-  {
-    category: 'Vocabulario · Collocaciones',
-    question: '¿Qué significa "break someone\'s heart" en inglés?',
-    verse: '"I never meant to break your heart"',
-    options: [
-      'Hacerle daño físico al corazón (órgano)',
-      'Causarle una gran desilusión o sufrimiento emocional a alguien',
-      'Romper una fotografía de alguien',
-      'Terminar una amistad de manera brusca'
-    ],
-    correctIndex: 1,
-    vocab: { word: 'BREAK SOMEONE\'S HEART', translation: 'Romper el corazón 💔', example: '"She broke my heart" = Me rompió el corazón (me hirió profundamente)' },
-    explanation: '<b>"Break someone\'s heart"</b> es una expresión fija que significa causarle una gran desilusión o dolor emocional a alguien — típicamente en relaciones románticas.'
-  },
-  {
-    category: 'Fonología · Énfasis y Entonación',
-    question: 'En el título, ¿qué palabra lleva el mayor énfasis emocional en la entonación de Ariana?',
-    verse: 'I HATE that I made you LOVE me',
-    options: [
-      '"I" — el pronombre personal',
-      '"hate" y "love" — las emociones opuestas en tensión',
-      '"that" — la conjunción',
-      '"made" — el verbo causativo'
-    ],
-    correctIndex: 1,
-    vocab: { word: 'EMOTIONAL STRESS / EMPHASIS', translation: 'Énfasis emocional en inglés 🎤', example: 'En inglés, la emoción se marca subiendo el tono en palabras clave' },
-    explanation: 'En inglés, el énfasis emocional recae sobre las <b>palabras de contenido con mayor carga semántica</b>. "HATE" y "LOVE" son las dos emociones en tensión que definen el conflicto de la canción.'
-  },
-  {
-    category: 'Comprensión · Tema Global',
-    question: '¿Cuál es la paradoja emocional central en "Hate That I Made You Love Me"?',
-    verse: '"I hate that I made you love me / I\'m sorry that I let you down"',
-    options: [
-      'Ariana está feliz de haber encontrado el amor verdadero',
-      'La narradora siente culpa y arrepentimiento por despertar sentimientos que no podía corresponder',
-      'La canción trata sobre una historia de amistad traicionada',
-      'Es una canción de empoderamiento femenino sin conflicto'
-    ],
-    correctIndex: 1,
-    vocab: { word: 'PARADOX OF GUILT IN LOVE', translation: 'Paradoja emocional de culpa 🌀', example: 'Odiar haber causado el amor que luego no puedes corresponder' },
-    explanation: 'La paradoja central: la narradora lamenta (<b>"I hate that"</b>) haber despertado un amor genuino en alguien cuando ella no podía —o no quería— corresponderlo. Culpa por haber "provocado" ese amor.'
-  },
-  {
-    category: 'Vocabulario · Expresiones',
-    question: '¿Qué significa "let someone down" en inglés?',
-    verse: '"I\'m sorry that I let you down"',
-    options: [
-      'Dejar a alguien bajar por las escaleras',
-      'Decepcionar a alguien / fallarle a alguien',
-      'Ayudar a alguien a relajarse',
-      'Ignorar a alguien en público'
-    ],
-    correctIndex: 1,
-    vocab: { word: 'LET DOWN', translation: 'Decepcionar / Fallar 😞', example: '"I don\'t want to let you down" = No quiero decepcionarte / fallarte' },
-    explanation: '<b>"Let someone down"</b> significa decepcionar a alguien — no cumplir con sus expectativas o fallarle. "I\'m sorry I let you down" = Lo siento, te fallé / te decepcioné.'
+    vocab: { word: 'ACHING / SORE / STITCHES', translation: 'Metáforas de dolor físico', example: 'La canción usa lesiones físicas para describir el desamor' },
+    explanation: 'La canción usa metáforas de heridas físicas (cortadas, sangrado, puntos de sutura, aguja e hilo) de forma continua para representar el devastador impacto emocional de un corazón roto.'
   }
 ];
 
@@ -875,10 +871,16 @@ const questions = [
 //  STATE
 // =============================================
 let currentIdx = 0;
-let streak = 0, xp = 0, score = 0, lives = 3;
-let hasAnswered = false, timerInterval = null, timeLeft = 30, hintUsed = false;
+let streak = 0;
+let xp = 0;
+let score = 0;
+let lives = 3;
+let hasAnswered = false;
+let timerInterval = null;
+let timeLeft = 30;
+let hintUsed = false;
 const TIMER_MAX = 30;
-const circumference = 2 * Math.PI * 20;
+const circumference = 2 * Math.PI * 20; // r=20
 
 // =============================================
 //  DOM REFS
@@ -897,7 +899,7 @@ const comboMult    = document.getElementById('combo-mult');
 const toastEl      = document.getElementById('toast');
 
 // =============================================
-//  AUDIO ENGINE
+//  AUDIO ENGINE (Web Speech + AudioContext)
 // =============================================
 let audioCtx = null;
 
@@ -906,39 +908,38 @@ function getAudioCtx() {
   return audioCtx;
 }
 
-function playTone(freq, type, duration, vol = 0.12) {
+function playTone(freq, type, duration, volume = 0.15) {
   const ctx = getAudioCtx();
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
   osc.connect(gain); gain.connect(ctx.destination);
   osc.type = type;
   osc.frequency.setValueAtTime(freq, ctx.currentTime);
-  gain.gain.setValueAtTime(vol, ctx.currentTime);
+  gain.gain.setValueAtTime(volume, ctx.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
   osc.start(ctx.currentTime);
   osc.stop(ctx.currentTime + duration);
 }
 
 function playCorrectSound() {
-  // Soft chime — pink style
-  playTone(659, 'sine', 0.18, 0.1);
-  setTimeout(() => playTone(784, 'sine', 0.18, 0.1), 90);
-  setTimeout(() => playTone(988, 'sine', 0.28, 0.1), 180);
+  playTone(523, 'sine', 0.15, 0.12);
+  setTimeout(() => playTone(659, 'sine', 0.15, 0.12), 80);
+  setTimeout(() => playTone(784, 'sine', 0.25, 0.12), 160);
 }
 
 function playWrongSound() {
-  playTone(220, 'triangle', 0.18, 0.1);
-  setTimeout(() => playTone(165, 'triangle', 0.22, 0.1), 110);
+  playTone(200, 'sawtooth', 0.15, 0.1);
+  setTimeout(() => playTone(150, 'sawtooth', 0.25, 0.1), 100);
 }
 
 function playTimerAlarm() {
-  playTone(880, 'square', 0.1, 0.07);
-  setTimeout(() => playTone(440, 'square', 0.15, 0.07), 60);
+  playTone(880, 'square', 0.12, 0.08);
+  setTimeout(() => playTone(440, 'square', 0.2, 0.1), 60);
 }
 
 function playFanfare() {
-  [523, 659, 784, 988, 1047].forEach((f, i) =>
-    setTimeout(() => playTone(f, 'sine', 0.3, 0.12), i * 90));
+  const notes = [523, 659, 784, 1047];
+  notes.forEach((f, i) => setTimeout(() => playTone(f, 'sine', 0.3, 0.15), i * 100));
 }
 
 function speakVerse() {
@@ -947,12 +948,12 @@ function speakVerse() {
   const btn = document.getElementById('btn-audio');
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
-    const utter = new SpeechSynthesisUtterance(q.verse.replace(/^"/, '').replace(/"$/, ''));
+    const utter = new SpeechSynthesisUtterance(q.verse);
     utter.lang = 'en-US';
     utter.rate = 0.85;
-    utter.pitch = 1.1;
+    utter.pitch = 1.05;
     const voices = window.speechSynthesis.getVoices();
-    const enVoice = voices.find(v => v.lang.startsWith('en-') && v.name.toLowerCase().includes('female')) ||
+    const enVoice = voices.find(v => v.lang.startsWith('en') && !v.name.toLowerCase().includes('google')) ||
                     voices.find(v => v.lang.startsWith('en'));
     if (enVoice) utter.voice = enVoice;
     btn.classList.add('playing');
@@ -974,22 +975,26 @@ function startTimer() {
     timeLeft--;
     updateTimerUI();
     if (timeLeft <= 10) {
-      timerFg.style.stroke = '#fb7185';
+      timerFg.style.stroke = '#ef4444';
       if (timeLeft <= 5) playTimerAlarm();
     } else {
       timerFg.style.stroke = 'var(--accent)';
     }
-    if (timeLeft <= 0) { clearInterval(timerInterval); timeExpired(); }
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      timeExpired();
+    }
   }, 1000);
 }
 
 function stopTimer() { clearInterval(timerInterval); }
 
 function updateTimerUI() {
-  const offset = circumference * (1 - timeLeft / TIMER_MAX);
+  const pct = timeLeft / TIMER_MAX;
+  const offset = circumference * (1 - pct);
   timerFg.style.strokeDashoffset = offset;
   timerNum.textContent = timeLeft;
-  timerNum.style.color = timeLeft <= 10 ? '#fb7185' : 'var(--accent)';
+  timerNum.style.color = timeLeft <= 10 ? '#ef4444' : 'var(--accent)';
 }
 
 function timeExpired() {
@@ -998,11 +1003,14 @@ function timeExpired() {
   const q = questions[currentIdx];
   playWrongSound();
   loseLife();
-  streak = 0; streakEl.textContent = 0;
+  streak = 0; streakEl.textContent = streak;
   comboBadge.style.display = 'none';
   q.options.forEach((_, i) => {
     const btn = document.getElementById(`opt-${i}`);
-    if (btn) { btn.disabled = true; if (i === q.correctIndex) btn.classList.add('correct'); }
+    if (btn) {
+      btn.disabled = true;
+      if (i === q.correctIndex) btn.classList.add('correct');
+    }
   });
   const fb = document.getElementById('feedback-box');
   if (fb) {
@@ -1021,7 +1029,9 @@ function loseLife() {
   lives--;
   const heartEl = document.getElementById(`h${3 - lives}`);
   if (heartEl) heartEl.classList.add('lost');
-  if (lives <= 0) setTimeout(showGameOver, 700);
+  if (lives <= 0) {
+    setTimeout(showGameOver, 700);
+  }
 }
 
 function showGameOver() {
@@ -1029,7 +1039,7 @@ function showGameOver() {
   quizArea.innerHTML = `
     <div class="gameover-screen">
       <div class="results-title">Sin vidas</div>
-      <p class="results-message">Llegaste a la pregunta ${currentIdx + 1} de ${questions.length}.<br>Cada intento te hace mejor.</p>
+      <p class="results-message">Llegaste a la pregunta ${currentIdx + 1} de ${questions.length}.<br>¡Cada intento te hace más fuerte!</p>
       <div class="results-buttons">
         <button class="btn-next" onclick="restartQuiz()">Intentar de nuevo</button>
         <a href="../../index.html" class="btn-retry">Catálogo</a>
@@ -1042,7 +1052,8 @@ function showGameOver() {
 //  RENDER QUESTION
 // =============================================
 function renderQuestion() {
-  hasAnswered = false; hintUsed = false;
+  hasAnswered = false;
+  hintUsed = false;
   btnNext.disabled = true;
   btnNext.style.display = 'inline-flex';
 
@@ -1069,15 +1080,26 @@ function renderQuestion() {
       ${q.verse ? `<div class="context-verse">"${highlightVerse(q.verse)}"</div>` : ''}
       <div class="options-grid">${optHTML}</div>
       <div class="feedback-box" id="feedback-box"></div>
-      <div class="vocab-flip-wrap" id="vocab-wrap" style="display:none;"></div>
+      <div class="vocab-flip-wrap" id="vocab-wrap">
+        <div class="vocab-face vocab-face-front">
+          <span class="vocab-hint-label">🔤 Tarjeta de vocabulario · Haz clic para girar</span>
+          <span style="font-size:1.1rem;">${q.vocab.word}</span>
+        </div>
+      </div>
     </div>`;
 
-  document.getElementById('btn-hint').disabled = false;
+  // Init vocab flip card (hidden initially)
+  document.querySelector('.vocab-flip-wrap').style.display = 'none';
+
+  const hintBtn = document.getElementById('btn-hint');
+  hintBtn.disabled = false;
+
   startTimer();
 }
 
 function highlightVerse(verse) {
-  return verse.replace(/\b(barely|knew|hate|made|love|down|fall|tomb|wanna|want|should|break|heart|let|ya|hardly)\b/gi,
+  // Bold key words in verse
+  return verse.replace(/\b(stitches|knife|knees|gotta|breathe|breath|red|under|reap|sow|moth|flame|bleed|watch)\b/gi,
     w => `<strong>${w}</strong>`);
 }
 
@@ -1104,7 +1126,8 @@ function selectOption(selectedIdx) {
     streak++;
     const multiplier = streak >= 5 ? 3 : streak >= 3 ? 2 : 1;
     const earned = 15 * multiplier;
-    xp += earned; score++;
+    xp += earned;
+    score++;
     streakEl.textContent = streak;
     xpEl.textContent = xp;
     playCorrectSound();
@@ -1124,14 +1147,15 @@ function selectOption(selectedIdx) {
     if (streak === 5) showToast('Racha x5 — XP maximo x3');
 
   } else {
-    streak = 0; streakEl.textContent = 0;
+    streak = 0; streakEl.textContent = streak;
     comboBadge.style.display = 'none';
     playWrongSound();
     loseLife();
 
-    const badMsgs = ['Casi', 'Sigue aprendiendo', 'Aprende del error'];
+    const badMsgs = ['Casi', 'Sigue intentando', 'Aprende del error'];
+    const msg = badMsgs[Math.floor(Math.random() * badMsgs.length)];
     fb.className = 'feedback-box incorrect';
-    fb.innerHTML = `<b>${badMsgs[Math.floor(Math.random() * badMsgs.length)]}</b><br>${q.explanation}`;
+    fb.innerHTML = `<b>${msg}</b><br>${q.explanation}`;
   }
 
   if (lives > 0) showVocabCard();
@@ -1171,15 +1195,18 @@ function useHint() {
   showToast('Pista usada (-5 XP) — 2 opciones eliminadas');
 
   const q = questions[currentIdx];
-  const wrong = q.options.map((_, i) => i).filter(i => i !== q.correctIndex);
-  wrong.sort(() => Math.random() - 0.5).slice(0, 2).forEach(i => {
+  const wrong = [];
+  q.options.forEach((_, i) => { if (i !== q.correctIndex) wrong.push(i); });
+  // Shuffle and remove 2
+  wrong.sort(() => Math.random() - 0.5);
+  wrong.slice(0, 2).forEach(i => {
     const btn = document.getElementById(`opt-${i}`);
     if (btn) btn.classList.add('eliminated');
   });
 }
 
 // =============================================
-//  NAVIGATION
+//  NEXT QUESTION
 // =============================================
 function nextQuestion() {
   if (currentIdx < questions.length - 1) {
@@ -1201,16 +1228,16 @@ function showResults() {
   progressFill.style.width = '100%';
 
   const pct = Math.round((score / questions.length) * 100);
-  let medal = 'C', msg = '';
-  if (pct >= 90) { medal = 'S'; msg = 'Dominio absoluto. Entiendes cada expresión, estructura y matiz de la canción.'; }
-  else if (pct >= 70) { medal = 'A'; msg = 'Muy bien. Comprendes la mayoría de las expresiones y estructuras gramaticales.'; }
-  else if (pct >= 50) { medal = 'B'; msg = 'Buen esfuerzo. Escucha la canción con la letra para reforzar lo aprendido.'; }
-  else { msg = 'Sigue practicando. Cada repetición te hace más fuerte.'; }
+  let medal = '', msg = '';
+  if (pct >= 90) { medal = 'S'; msg = 'Dominio absoluto. Entiendes cada verso, metáfora y regla gramatical.'; }
+  else if (pct >= 70) { medal = 'A'; msg = 'Muy bien. Tienes una base sólida en las expresiones y el inglés de esta canción.'; }
+  else if (pct >= 50) { medal = 'B'; msg = 'Buen esfuerzo. Escucha la canción mientras lees la letra para reforzar lo aprendido.'; }
+  else { medal = 'C'; msg = 'Sigue practicando. Cada escucha te hace más fuerte.'; }
 
   const r = 54, circ = 2 * Math.PI * r;
   const offset = circ * (1 - pct / 100);
 
-  launchConfetti(120);
+  launchConfetti(100);
 
   quizArea.innerHTML = `
     <div class="results-screen">
@@ -1220,14 +1247,13 @@ function showResults() {
         <svg width="140" height="140" viewBox="0 0 140 140">
           <circle cx="70" cy="70" r="${r}" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="8"/>
           <circle cx="70" cy="70" r="${r}" fill="none"
-            stroke="url(#scoreGradPink)" stroke-width="8" stroke-linecap="round"
+            stroke="url(#scoreGrad)" stroke-width="8" stroke-linecap="round"
             stroke-dasharray="${circ}" stroke-dashoffset="${offset}"
             style="transition:stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1)"/>
           <defs>
-            <linearGradient id="scoreGradPink" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#f472b6"/>
-              <stop offset="50%" stop-color="#ff8da1"/>
-              <stop offset="100%" stop-color="#d6b3ff"/>
+            <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#06b6d4"/>
+              <stop offset="100%" stop-color="#00d4ff"/>
             </linearGradient>
           </defs>
         </svg>
@@ -1261,6 +1287,9 @@ function showResults() {
   document.querySelector('.timer-ring-wrap').style.display = 'none';
 }
 
+// =============================================
+//  RESTART
+// =============================================
 function restartQuiz() {
   currentIdx = 0; score = 0; streak = 0; xp = 0; lives = 3;
   streakEl.textContent = 0; xpEl.textContent = 0;
@@ -1282,7 +1311,7 @@ function showToast(msg) {
 }
 
 // =============================================
-//  CONFETTI — Pink theme
+//  CONFETTI
 // =============================================
 const confettiCanvas = document.getElementById('confetti-canvas');
 const confettiCtx = confettiCanvas.getContext('2d');
@@ -1291,12 +1320,13 @@ let confettiPieces = [];
 function launchConfetti(count = 60) {
   confettiCanvas.width = window.innerWidth;
   confettiCanvas.height = window.innerHeight;
-  const colors = ['#ff8da1','#d6b3ff','#f472b6','#fbbf24','#fb7185','#e879f9'];
+  const colors = ['#00d4ff','#7c3aed','#10b981','#f59e0b','#ec4899','#06b6d4'];
   for (let i = 0; i < count; i++) {
     confettiPieces.push({
       x: Math.random() * confettiCanvas.width,
       y: -10 - Math.random() * 60,
-      w: 6 + Math.random() * 8, h: 10 + Math.random() * 6,
+      w: 6 + Math.random() * 8,
+      h: 10 + Math.random() * 6,
       color: colors[Math.floor(Math.random() * colors.length)],
       vx: (Math.random() - 0.5) * 4,
       vy: 2 + Math.random() * 4,
@@ -1312,7 +1342,8 @@ function animateConfetti() {
   confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
   confettiPieces = confettiPieces.filter(p => p.opacity > 0.02);
   confettiPieces.forEach(p => {
-    p.x += p.vx; p.y += p.vy; p.rot += p.vrot; p.vy += 0.08;
+    p.x += p.vx; p.y += p.vy; p.rot += p.vrot;
+    p.vy += 0.08; // gravity
     if (p.y > confettiCanvas.height * 0.7) p.opacity -= 0.025;
     confettiCtx.save();
     confettiCtx.globalAlpha = p.opacity;
@@ -1327,7 +1358,7 @@ function animateConfetti() {
 }
 
 // =============================================
-//  PARTICLES — Rose/Lavender theme
+//  PARTICLES (Background)
 // =============================================
 const pCanvas = document.getElementById('particles-canvas');
 const pCtx = pCanvas.getContext('2d');
@@ -1337,31 +1368,31 @@ function initParticles() {
   pCanvas.width = window.innerWidth;
   pCanvas.height = window.innerHeight;
   particles = [];
-  const count = Math.min(55, Math.floor(window.innerWidth / 18));
-  const symbols = ['♪','♫','✦','·','✿','❋','⁕'];
+  const count = Math.min(50, Math.floor(window.innerWidth / 20));
+  const symbols = ['♪','♫','♩','♬','✦','·'];
   for (let i = 0; i < count; i++) {
     particles.push({
       x: Math.random() * pCanvas.width,
       y: Math.random() * pCanvas.height,
       sym: symbols[Math.floor(Math.random() * symbols.length)],
-      size: 9 + Math.random() * 14,
+      size: 8 + Math.random() * 14,
       opacity: 0.04 + Math.random() * 0.08,
-      vy: -0.18 - Math.random() * 0.28,
-      vx: (Math.random() - 0.5) * 0.12,
-      pulse: Math.random() * Math.PI * 2,
-      isPink: Math.random() > 0.5
+      vy: -0.2 - Math.random() * 0.3,
+      vx: (Math.random() - 0.5) * 0.15,
+      pulse: Math.random() * Math.PI * 2
     });
   }
 }
 
 function animateParticles() {
   pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+  const t = Date.now() / 1000;
   particles.forEach(p => {
     p.y += p.vy; p.x += p.vx; p.pulse += 0.02;
     if (p.y < -30) { p.y = pCanvas.height + 10; p.x = Math.random() * pCanvas.width; }
     const alpha = p.opacity * (0.7 + 0.3 * Math.sin(p.pulse));
     pCtx.globalAlpha = alpha;
-    pCtx.fillStyle = p.isPink ? '#ff8da1' : '#d6b3ff';
+    pCtx.fillStyle = '#00d4ff';
     pCtx.font = `${p.size}px serif`;
     pCtx.fillText(p.sym, p.x, p.y);
   });
@@ -1369,16 +1400,13 @@ function animateParticles() {
   requestAnimationFrame(animateParticles);
 }
 
-window.addEventListener('resize', () => {
-  initParticles();
-  confettiCanvas.width = window.innerWidth;
-  confettiCanvas.height = window.innerHeight;
-});
+window.addEventListener('resize', () => { initParticles(); confettiCanvas.width = window.innerWidth; confettiCanvas.height = window.innerHeight; });
 
 // =============================================
 //  INIT
 // =============================================
 window.addEventListener('DOMContentLoaded', () => {
+  // Preload speech voices
   if ('speechSynthesis' in window) {
     window.speechSynthesis.getVoices();
     window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
