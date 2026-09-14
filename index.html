@@ -203,10 +203,41 @@
       color: #4ade80;
     }
 
+    .badge-advanced {
+      background: rgba(251,113,133,0.18);
+      border: 1px solid rgba(251,113,133,0.35);
+      color: #fb7185;
+    }
+
+    .badge-inter-adv {
+      background: rgba(251,191,36,0.15);
+      border: 1px solid rgba(251,191,36,0.3);
+      color: #fbbf24;
+    }
+
     .badge-questions {
       background: rgba(0,0,0,0.5);
       border: 1px solid rgba(255,255,255,0.1);
       color: rgba(255,255,255,0.7);
+    }
+
+    /* === SECTION FILTER TAGS === */
+    .filter-bar {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .filter-tag {
+      padding: 6px 16px; border-radius: 20px;
+      font-size: 0.78rem; font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.03);
+      cursor: pointer; transition: all 0.2s;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .filter-tag:hover, .filter-tag.active {
+      border-color: rgba(56,189,248,0.4);
+      color: #38bdf8; background: rgba(56,189,248,0.08);
     }
 
     /* Card body */
@@ -344,16 +375,16 @@
     </p>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="hero-stat-num">25+</div>
-        <div class="hero-stat-lbl">Preguntas disponibles</div>
+        <div class="hero-stat-num">75+</div>
+        <div class="hero-stat-lbl">Preguntas planificadas</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num">2</div>
-        <div class="hero-stat-lbl">Canciones activas</div>
+        <div class="hero-stat-num">12</div>
+        <div class="hero-stat-lbl">Canciones en catálogo</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num">B1–B2</div>
-        <div class="hero-stat-lbl">Nivel CEFR</div>
+        <div class="hero-stat-num">A2–C1</div>
+        <div class="hero-stat-lbl">Niveles CEFR</div>
       </div>
     </div>
   </div>
@@ -450,30 +481,241 @@
       </div>
     </div>
 
-    <!-- CARD 3: Coldplay (próximamente) -->
+    <!-- CARD 3: Ed Sheeran - Perfect -->
     <div class="song-card gray-glow">
-      <div class="card-cover" style="background: #0f1724;">
-        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.5);"></div>
+      <div class="card-cover" style="background: linear-gradient(135deg, #1a0a2e, #0d1f3c);">
+        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.4);"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-intermediate">Intermedio</span>
+          <span class="level-badge badge-questions">Próximamente</span>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0.25;">🎸</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Perfect</div>
+          <div class="card-artist" style="color:rgba(255,255,255,0.35);">Ed Sheeran</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item"><span class="topic-emoji">💬</span><span><b>Vocabulario:</b> Romántico — "bare", "darling", "sway"</span></div>
+          <div class="topic-item"><span class="topic-emoji">📐</span><span><b>Gramática:</b> Pasado simple + contracciones</span></div>
+          <div class="topic-item"><span class="topic-emoji">🔊</span><span><b>Pronunciación:</b> Linking en contracciones ("I've been", "you're")</span></div>
+        </div>
+        <button class="btn-quiz locked" disabled>🔒 Próximamente</button>
+      </div>
+    </div>
+
+    <!-- CARD 4: Adele - Someone Like You -->
+    <div class="song-card gray-glow">
+      <div class="card-cover" style="background: linear-gradient(135deg, #1c0a0a, #2d1a35);">
+        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.4);"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-inter-adv">Inter–Avanzado</span>
+          <span class="level-badge badge-questions">Próximamente</span>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0.25;">🎙️</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Someone Like You</div>
+          <div class="card-artist" style="color:rgba(255,255,255,0.35);">Adele</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item"><span class="topic-emoji">💔</span><span><b>Vocabulario:</b> Nostalgia — "settled down", "bittersweet"</span></div>
+          <div class="topic-item"><span class="topic-emoji">📐</span><span><b>Gramática:</b> Condicionales — "I hate to turn up out of the blue"</span></div>
+          <div class="topic-item"><span class="topic-emoji">🔊</span><span><b>Pronunciación:</b> Acento británico (dropped /r/)</span></div>
+        </div>
+        <button class="btn-quiz locked" disabled>🔒 Próximamente</button>
+      </div>
+    </div>
+
+    <!-- CARD 5: OneRepublic - Counting Stars -->
+    <div class="song-card gray-glow">
+      <div class="card-cover" style="background: linear-gradient(135deg, #0a1a0f, #0d2233);">
+        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.4);"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-basic">Básico–Intermedio</span>
+          <span class="level-badge badge-questions">Próximamente</span>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0.25;">⭐</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Counting Stars</div>
+          <div class="card-artist" style="color:rgba(255,255,255,0.35);">OneRepublic</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item"><span class="topic-emoji">📖</span><span><b>Vocabulario:</b> "Lately", "swing", "pray"</span></div>
+          <div class="topic-item"><span class="topic-emoji">📐</span><span><b>Gramática:</b> Presente continuo + phrasal verbs simples</span></div>
+          <div class="topic-item"><span class="topic-emoji">🏃</span><span><b>Phrasal Verbs:</b> "Give up", "take back", "feel it"</span></div>
+        </div>
+        <button class="btn-quiz locked" disabled>🔒 Próximamente</button>
+      </div>
+    </div>
+
+    <!-- CARD 6: Ed Sheeran - Shape of You -->
+    <div class="song-card gray-glow">
+      <div class="card-cover" style="background: linear-gradient(135deg, #1a0d00, #2a1a0a);">
+        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.4);"></div>
         <div class="card-cover-badges">
           <span class="level-badge badge-basic">Básico</span>
           <span class="level-badge badge-questions">Próximamente</span>
         </div>
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:0.3;">🔒</div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0.25;">🕺</div>
       </div>
       <div class="card-body">
         <div>
-          <div class="card-title">Yellow</div>
-          <div class="card-artist" style="color:rgba(255,255,255,0.35);">Coldplay</div>
+          <div class="card-title">Shape of You</div>
+          <div class="card-artist" style="color:rgba(255,255,255,0.35);">Ed Sheeran</div>
         </div>
         <div class="topics-list">
-          <div class="topic-item">
-            <span class="topic-emoji">📖</span>
-            <span><b>Vocabulario:</b> Adjetivos de luz y brillo</span>
-          </div>
-          <div class="topic-item">
-            <span class="topic-emoji">💡</span>
-            <span><b>Comprensión:</b> Metáforas poéticas simples</span>
-          </div>
+          <div class="topic-item"><span class="topic-emoji">📖</span><span><b>Vocabulario:</b> Cotidiano — "grab", "pull", "figure"</span></div>
+          <div class="topic-item"><span class="topic-emoji">📐</span><span><b>Gramática:</b> Presente simple narrativo</span></div>
+          <div class="topic-item"><span class="topic-emoji">🇬🇧</span><span><b>Slang:</b> Expresiones británicas suaves</span></div>
+        </div>
+        <button class="btn-quiz locked" disabled>🔒 Próximamente</button>
+      </div>
+    </div>
+
+    <!-- CARD 7: The Weeknd - Blinding Lights -->
+    <div class="song-card gray-glow">
+      <div class="card-cover" style="background: linear-gradient(135deg, #1a0000, #2d0d1a);">
+        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.4);"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-intermediate">Intermedio</span>
+          <span class="level-badge badge-questions">Próximamente</span>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0.25;">🌃</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Blinding Lights</div>
+          <div class="card-artist" style="color:rgba(255,255,255,0.35);">The Weeknd</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item"><span class="topic-emoji">💫</span><span><b>Vocabulario:</b> Emociones — "sin city", "blazin'", "blind"</span></div>
+          <div class="topic-item"><span class="topic-emoji">📐</span><span><b>Gramática:</b> Comparativos de intensidad</span></div>
+          <div class="topic-item"><span class="topic-emoji">🔊</span><span><b>Pronunciación:</b> Reducción de sílabas en habla rápida</span></div>
+        </div>
+        <button class="btn-quiz locked" disabled>🔒 Próximamente</button>
+      </div>
+    </div>
+
+    <!-- CARD 8: Harry Styles - Watermelon Sugar -->
+    <div class="song-card gray-glow">
+      <div class="card-cover" style="background: linear-gradient(135deg, #1a0a00, #2d1a00);">
+        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.4);"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-basic">Básico–Intermedio</span>
+          <span class="level-badge badge-questions">Próximamente</span>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0.25;">🍉</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Watermelon Sugar</div>
+          <div class="card-artist" style="color:rgba(255,255,255,0.35);">Harry Styles</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item"><span class="topic-emoji">👅</span><span><b>Vocabulario:</b> Sensorial — "taste", "strawberries", "summer"</span></div>
+          <div class="topic-item"><span class="topic-emoji">📐</span><span><b>Gramática:</b> Imperativos y verbos sensoriales</span></div>
+          <div class="topic-item"><span class="topic-emoji">🇬🇧</span><span><b>Pronunciación:</b> Acento británico en vocales</span></div>
+        </div>
+        <button class="btn-quiz locked" disabled>🔒 Próximamente</button>
+      </div>
+    </div>
+
+    <!-- CARD 9: Lil Nas X - Old Town Road -->
+    <div class="song-card gray-glow">
+      <div class="card-cover" style="background: linear-gradient(135deg, #1a0f00, #2a1800);">
+        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.4);"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-basic">Básico</span>
+          <span class="level-badge badge-questions">Próximamente</span>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0.25;">🐎</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Old Town Road</div>
+          <div class="card-artist" style="color:rgba(255,255,255,0.35);">Lil Nas X</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item"><span class="topic-emoji">🇺🇸</span><span><b>Slang:</b> Americano — "Yeehaw", "ridin'", "til I can't no more"</span></div>
+          <div class="topic-item"><span class="topic-emoji">📐</span><span><b>Gramática:</b> Presente simple + doble negativo coloquial</span></div>
+          <div class="topic-item"><span class="topic-emoji">🎸</span><span><b>Cultura:</b> Fusión country y hip-hop americano</span></div>
+        </div>
+        <button class="btn-quiz locked" disabled>🔒 Próximamente</button>
+      </div>
+    </div>
+
+    <!-- CARD 10: Dua Lipa - Levitating -->
+    <div class="song-card gray-glow">
+      <div class="card-cover" style="background: linear-gradient(135deg, #00001a, #0d002d);">
+        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.4);"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-intermediate">Intermedio</span>
+          <span class="level-badge badge-questions">Próximamente</span>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0.25;">🚀</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Levitating</div>
+          <div class="card-artist" style="color:rgba(255,255,255,0.35);">Dua Lipa</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item"><span class="topic-emoji">🌌</span><span><b>Vocabulario:</b> Espacial — "galaxy", "float", "levitate"</span></div>
+          <div class="topic-item"><span class="topic-emoji">📐</span><span><b>Gramática:</b> Presente continuo con matiz futuro</span></div>
+          <div class="topic-item"><span class="topic-emoji">🎵</span><span><b>Pronunciación:</b> Ritmo sincopado y enlace vocálico</span></div>
+        </div>
+        <button class="btn-quiz locked" disabled>🔒 Próximamente</button>
+      </div>
+    </div>
+
+    <!-- CARD 11: Ed Sheeran - Photograph -->
+    <div class="song-card gray-glow">
+      <div class="card-cover" style="background: linear-gradient(135deg, #0a0a1a, #1a0f2a);">
+        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.4);"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-inter-adv">Inter–Avanzado</span>
+          <span class="level-badge badge-questions">Próximamente</span>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0.25;">📷</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Photograph</div>
+          <div class="card-artist" style="color:rgba(255,255,255,0.35);">Ed Sheeran</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item"><span class="topic-emoji">🧠</span><span><b>Vocabulario:</b> Memoria — "carry", "pain", "remind"</span></div>
+          <div class="topic-item"><span class="topic-emoji">📐</span><span><b>Gramática:</b> Pasado simple vs. Presente perfecto</span></div>
+          <div class="topic-item"><span class="topic-emoji">🔊</span><span><b>Pronunciación:</b> Diferencia /æ/ y /ɑː/ en contexto</span></div>
+        </div>
+        <button class="btn-quiz locked" disabled>🔒 Próximamente</button>
+      </div>
+    </div>
+
+    <!-- CARD 12: Billie Eilish - Happier Than Ever -->
+    <div class="song-card gray-glow">
+      <div class="card-cover" style="background: linear-gradient(135deg, #000a00, #001a0f);">
+        <div class="card-cover-overlay" style="background: rgba(0,0,0,0.4);"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-advanced">Avanzado</span>
+          <span class="level-badge badge-questions">Próximamente</span>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0.25;">🥀</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Happier Than Ever</div>
+          <div class="card-artist" style="color:rgba(255,255,255,0.35);">Billie Eilish</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item"><span class="topic-emoji">🧠</span><span><b>Vocabulario:</b> Emocional complejo — "belittle", "petrified"</span></div>
+          <div class="topic-item"><span class="topic-emoji">📐</span><span><b>Gramática:</b> Cambios de tiempo verbal, ironía lingüística</span></div>
+          <div class="topic-item"><span class="topic-emoji">🎭</span><span><b>Ironía:</b> El significado opuesto al tono superficial</span></div>
         </div>
         <button class="btn-quiz locked" disabled>🔒 Próximamente</button>
       </div>
