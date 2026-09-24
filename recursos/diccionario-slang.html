@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diccionario de Slang en Canciones de Pop — Recursos · Aprende Inglés con Música</title>
+  <meta name="description" content="Diccionario interactivo de más de 25 términos de slang comunes en canciones populares en inglés. Con definición, ejemplo de uso y canción de origen.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c084fc' stroke-width='2.5'%3E%3Cpath d='M9 18V5l12-2v13'%3E%3C/path%3E%3Ccircle cx='6' cy='18' r='3' fill='%2338bdf8'%3E%3C/circle%3E%3C/svg%3E">
+  <style>
+    :root{--bg:#06090f;--card:rgba(12,20,38,0.82);--border:rgba(255,255,255,0.07);--text:#f0f9ff;--muted:#64748b;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+    #particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+    nav{position:sticky;top:0;z-index:100;background:rgba(6,9,15,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;}
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px;height:58px;}
+    .nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:1rem;background:linear-gradient(135deg,#38bdf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+    .nav-links{display:flex;gap:4px;margin-left:auto;align-items:center;}
+    .nav-link{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:600;padding:6px 14px;border-radius:10px;transition:all 0.2s;}
+    .nav-link:hover,.nav-link.active{color:#38bdf8;background:rgba(56,189,248,0.08);}
+    .nav-btn{background:linear-gradient(135deg,#38bdf8,#818cf8);color:#06090f;font-weight:800;font-size:0.82rem;padding:7px 16px;border-radius:10px;text-decoration:none;transition:opacity 0.2s;}
+    .nav-btn:hover{opacity:0.85;}
+
+    .page-header{position:relative;z-index:1;padding:60px 24px 40px;text-align:center;}
+    .page-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);color:#fbbf24;border-radius:20px;padding:5px 14px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:18px;}
+    .page-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;color:#fff;letter-spacing:-0.02em;margin-bottom:14px;}
+    .page-title span{background:linear-gradient(135deg,#fbbf24,#f59e0b,#d97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .page-subtitle{color:rgba(240,249,255,0.55);font-size:1rem;max-width:520px;margin:0 auto 32px;}
+
+    /* SEARCH BAR */
+    .search-wrap{position:relative;z-index:1;max-width:600px;margin:0 auto 16px;padding:0 24px;}
+    .search-input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:13px 18px 13px 44px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.95rem;outline:none;transition:border-color 0.2s;}
+    .search-input::placeholder{color:var(--muted);}
+    .search-input:focus{border-color:rgba(251,191,36,0.4);}
+    .search-icon{position:absolute;left:38px;top:50%;transform:translateY(-50%);font-size:1.1rem;pointer-events:none;}
+
+    /* ALPHA NAV */
+    .alpha-nav{position:relative;z-index:1;max-width:900px;margin:0 auto 36px;padding:0 24px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
+    .alpha-btn{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:5px 11px;font-size:0.78rem;font-weight:800;color:var(--muted);cursor:pointer;transition:all 0.2s;font-family:'Plus Jakarta Sans',sans-serif;}
+    .alpha-btn:hover,.alpha-btn.active{background:rgba(251,191,36,0.12);border-color:rgba(251,191,36,0.3);color:#fbbf24;}
+
+    /* MAIN */
+    .main-content{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 24px 80px;}
+
+    /* SLANG TERM CARDS */
+    .slang-list{display:flex;flex-direction:column;gap:16px;}
+    .slang-card{background:var(--card);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:20px;padding:22px 24px;transition:border-color 0.2s,transform 0.2s;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;}
+    .slang-card:hover{border-color:rgba(251,191,36,0.2);transform:translateX(4px);}
+    .slang-card.hidden{display:none;}
+    .slang-left{display:flex;flex-direction:column;gap:8px;}
+    .slang-header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+    .slang-term{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.3rem;font-weight:900;color:#fbbf24;}
+    .slang-pos{background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);color:#fbbf24;padding:2px 9px;border-radius:6px;font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;}
+    .slang-origin{font-size:0.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;}
+    .slang-def{font-size:0.92rem;color:rgba(240,249,255,0.75);line-height:1.6;}
+    .slang-example{font-style:italic;font-size:0.88rem;color:rgba(240,249,255,0.5);border-left:2px solid rgba(251,191,36,0.3);padding-left:12px;margin-top:4px;}
+    .slang-song{font-size:0.75rem;color:#c084fc;font-weight:700;margin-top:4px;}
+    .slang-letter-badge{font-family:'Plus Jakarta Sans',sans-serif;font-size:2rem;font-weight:900;color:rgba(251,191,36,0.15);flex-shrink:0;align-self:center;}
+
+    .section-divider{display:flex;align-items:center;gap:12px;margin:32px 0 16px;}
+    .section-divider-letter{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:900;color:#fbbf24;flex-shrink:0;}
+    .section-divider-line{flex:1;height:1px;background:linear-gradient(to right,rgba(251,191,36,0.2),transparent);}
+
+    .no-results{text-align:center;padding:48px;color:var(--muted);}
+    .no-results-icon{font-size:3rem;margin-bottom:12px;}
+
+    /* RESOURCES NAV */
+    .resources-nav{position:relative;z-index:1;max-width:900px;margin:0 auto 40px;padding:0 24px;display:flex;gap:12px;flex-wrap:wrap;}
+    .res-link{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 18px;color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:600;transition:all 0.2s;display:flex;align-items:center;gap:6px;}
+    .res-link:hover{border-color:rgba(251,191,36,0.3);color:#fbbf24;}
+    .res-link.active{border-color:rgba(251,191,36,0.4);color:#fbbf24;background:rgba(251,191,36,0.06);}
+
+    footer{position:relative;z-index:1;text-align:center;padding:28px 20px;border-top:1px solid rgba(255,255,255,0.04);color:var(--muted);font-size:0.82rem;line-height:1.6;}
+    footer span{color:#38bdf8;}
+    .footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:10px;}
+    .footer-links a{color:var(--muted);text-decoration:none;transition:color 0.2s;}
+    .footer-links a:hover{color:#38bdf8;}
+    @media(max-width:600px){.page-title{font-size:1.9rem;}.slang-card{grid-template-columns:1fr;}.slang-letter-badge{display:none;}.nav-link{padding:6px 10px;font-size:0.8rem;}}
+  </style>
+</head>
+<body>
+<canvas id="particles-canvas"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">🎵 Inglés con Música</a>
+    <div class="nav-links">
+      <a href="../index.html" class="nav-link">Inicio</a>
+      <a href="../blog/blog.html" class="nav-link">Blog</a>
+      <a href="diccionario-slang.html" class="nav-link active">Recursos</a>
+      <a href="../index.html" class="nav-btn">🎮 Quizzes</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-tag">📖 Recurso de Referencia</div>
+  <h1 class="page-title">Diccionario de <span>Slang</span> Musical</h1>
+  <p class="page-subtitle">Más de 25 términos de slang que escuchás en canciones de pop, con definición, ejemplo y la canción donde aparecen.</p>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <span class="search-icon">🔍</span>
+  <input type="text" class="search-input" id="slangSearch" placeholder="Buscar término... (ej: vibe, slay, ghosting)">
+</div>
+
+<!-- ALPHA NAV -->
+<div class="alpha-nav" id="alphaNav">
+  <button class="alpha-btn active" data-letter="all">Todos</button>
+  <button class="alpha-btn" data-letter="B">B</button>
+  <button class="alpha-btn" data-letter="C">C</button>
+  <button class="alpha-btn" data-letter="D">D</button>
+  <button class="alpha-btn" data-letter="F">F</button>
+  <button class="alpha-btn" data-letter="G">G</button>
+  <button class="alpha-btn" data-letter="H">H</button>
+  <button class="alpha-btn" data-letter="L">L</button>
+  <button class="alpha-btn" data-letter="N">N</button>
+  <button class="alpha-btn" data-letter="O">O</button>
+  <button class="alpha-btn" data-letter="R">R</button>
+  <button class="alpha-btn" data-letter="S">S</button>
+  <button class="alpha-btn" data-letter="T">T</button>
+  <button class="alpha-btn" data-letter="V">V</button>
+  <button class="alpha-btn" data-letter="W">W</button>
+</div>
+
+<!-- RESOURCES NAV -->
+<div class="resources-nav">
+  <a href="diccionario-slang.html" class="res-link active">📖 Diccionario de Slang</a>
+  <a href="guia-pronunciacion.html" class="res-link">🗣️ Guía de Pronunciación</a>
+  <a href="gramatica-con-canciones.html" class="res-link">📝 Gramática con Canciones</a>
+</div>
+
+<div class="main-content">
+  <div id="noResults" class="no-results" style="display:none;">
+    <div class="no-results-icon">🔍</div>
+    <p>No se encontraron términos para esa búsqueda.</p>
+  </div>
+
+  <div class="slang-list" id="slangList">
+
+    <!-- B -->
+    <div class="section-divider" data-section="B"><span class="section-divider-letter">B</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="bae" data-letter="B">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">bae</span><span class="slang-pos">sust.</span><span class="slang-origin">🇺🇸 Slang americano</span></div>
+        <div class="slang-def">Pareja, ser querido/a. Acrónimo de "Before Anyone Else". Muy usado en pop y trap.</div>
+        <div class="slang-example">"You're my bae, and nobody else matters to me"</div>
+        <div class="slang-song">🎵 Pharrell — "Come Get It Bae"</div>
+      </div>
+      <div class="slang-letter-badge">B</div>
+    </div>
+
+    <div class="slang-card" data-term="bounce" data-letter="B">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">bounce</span><span class="slang-pos">verb / sust.</span><span class="slang-origin">🇺🇸 Hip-hop</span></div>
+        <div class="slang-def">Irse de un lugar (to bounce = leave). También el "bounce" rítmico de la música.</div>
+        <div class="slang-example">"Alright, let's bounce — this party is dead anyway"</div>
+        <div class="slang-song">🎵 Varios artistas de hip-hop y R&amp;B</div>
+      </div>
+      <div class="slang-letter-badge">B</div>
+    </div>
+
+    <!-- C -->
+    <div class="section-divider" data-section="C"><span class="section-divider-letter">C</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="caught in my feelings" data-letter="C">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">caught in my feelings</span><span class="slang-pos">expr.</span><span class="slang-origin">🇺🇸 R&amp;B / Pop</span></div>
+        <div class="slang-def">Estar en un estado emocional intenso, generalmente por amor o nostalgia. Sentirse abrumado por las emociones.</div>
+        <div class="slang-example">"I'm caught in my feelings again every time I hear that song"</div>
+        <div class="slang-song">🎵 Drake — "In My Feelings"</div>
+      </div>
+      <div class="slang-letter-badge">C</div>
+    </div>
+
+    <div class="slang-card" data-term="chill" data-letter="C">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">chill</span><span class="slang-pos">adj. / verb</span><span class="slang-origin">🌍 Inglés universal</span></div>
+        <div class="slang-def">Relajado, tranquilo. "Chill out" = calmarse. También puede significar pasar el rato informalmente con alguien.</div>
+        <div class="slang-example">"Hey, let's just chill tonight, no plans" / "She's really chill, easy to talk to"</div>
+        <div class="slang-song">🎵 Múltiples artistas: Dua Lipa, The Weeknd</div>
+      </div>
+      <div class="slang-letter-badge">C</div>
+    </div>
+
+    <!-- D -->
+    <div class="section-divider" data-section="D"><span class="section-divider-letter">D</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="drop" data-letter="D">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">drop</span><span class="slang-pos">verb / sust.</span><span class="slang-origin">🎵 Música</span></div>
+        <div class="slang-def">Lanzar música ("drop an album"). También el "drop" de una canción = el momento de mayor intensidad musical después del build-up.</div>
+        <div class="slang-example">"She's about to drop a new single this Friday" / "Wait for the drop — it's insane"</div>
+        <div class="slang-song">🎵 Contexto: cualquier lanzamiento musical</div>
+      </div>
+      <div class="slang-letter-badge">D</div>
+    </div>
+
+    <!-- F -->
+    <div class="section-divider" data-section="F"><span class="section-divider-letter">F</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="faded" data-letter="F">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">faded</span><span class="slang-pos">adj.</span><span class="slang-origin">🇺🇸 Slang</span></div>
+        <div class="slang-def">Ebrio, bajo efectos de alcohol o sustancias. También puede significar desvanecido, perdido en el tiempo.</div>
+        <div class="slang-example">"He was faded at the party last night" / "Those memories are faded now"</div>
+        <div class="slang-song">🎵 Alan Walker — "Faded" (uso metafórico de desvanecimiento)</div>
+      </div>
+      <div class="slang-letter-badge">F</div>
+    </div>
+
+    <div class="slang-card" data-term="feel some type of way" data-letter="F">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">feel some type of way</span><span class="slang-pos">expr.</span><span class="slang-origin">🇺🇸 R&amp;B</span></div>
+        <div class="slang-def">Tener sentimientos complejos o mixtos sobre algo. Incomodidad, enojo o nostalgia mezclados.</div>
+        <div class="slang-example">"That song makes me feel some type of way — can't explain it"</div>
+        <div class="slang-song">🎵 Big K.R.I.T., usado ampliamente en R&amp;B</div>
+      </div>
+      <div class="slang-letter-badge">F</div>
+    </div>
+
+    <!-- G -->
+    <div class="section-divider" data-section="G"><span class="section-divider-letter">G</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="ghosting" data-letter="G">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">ghosting</span><span class="slang-pos">sust. / verb.</span><span class="slang-origin">🌍 Cultura digital</span></div>
+        <div class="slang-def">Desaparecer sin dar explicaciones en una relación o amistad. Dejar de responder mensajes sin aviso.</div>
+        <div class="slang-example">"She started ghosting me after our third date — no explanation"</div>
+        <div class="slang-song">🎵 Referenciado en: Olivia Rodrigo, Taylor Swift</div>
+      </div>
+      <div class="slang-letter-badge">G</div>
+    </div>
+
+    <div class="slang-card" data-term="glow up" data-letter="G">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">glow up</span><span class="slang-pos">expr. / verb.</span><span class="slang-origin">🇺🇸 Pop culture</span></div>
+        <div class="slang-def">Transformación radical positiva — en apariencia, actitud o situación de vida. Como "cambiar para bien".</div>
+        <div class="slang-example">"She had a major glow up after the breakup — thriving now"</div>
+        <div class="slang-song">🎵 Referenciado en: Ariana Grande, Lizzo</div>
+      </div>
+      <div class="slang-letter-badge">G</div>
+    </div>
+
+    <!-- H -->
+    <div class="section-divider" data-section="H"><span class="section-divider-letter">H</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="hit different" data-letter="H">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">hit different</span><span class="slang-pos">expr.</span><span class="slang-origin">🌍 Generación Z</span></div>
+        <div class="slang-def">Tener un impacto emocional especial o inusual. "Esta canción hits different a las 3 AM" = afecta de manera más profunda.</div>
+        <div class="slang-example">"Listening to this album after a breakup hits different"</div>
+        <div class="slang-song">🎵 Usado frecuentemente en contextos musicales por fans</div>
+      </div>
+      <div class="slang-letter-badge">H</div>
+    </div>
+
+    <!-- L -->
+    <div class="section-divider" data-section="L"><span class="section-divider-letter">L</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="lowkey" data-letter="L">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">lowkey</span><span class="slang-pos">adv. / adj.</span><span class="slang-origin">🇺🇸 Internet slang</span></div>
+        <div class="slang-def">En secreto, un poco, de manera discreta. "Lowkey love this song" = me gusta aunque no lo admita públicamente.</div>
+        <div class="slang-example">"I lowkey love this cheesy pop song — don't tell anyone"</div>
+        <div class="slang-song">🎵 Billie Eilish, Khalid — lo usan en letras y entrevistas</div>
+      </div>
+      <div class="slang-letter-badge">L</div>
+    </div>
+
+    <!-- N -->
+    <div class="section-divider" data-section="N"><span class="section-divider-letter">N</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="no cap" data-letter="N">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">no cap</span><span class="slang-pos">expr.</span><span class="slang-origin">🇺🇸 AAVE / Hip-hop</span></div>
+        <div class="slang-def">Sin mentira, en serio, te lo juro. "Cap" = mentira, entonces "no cap" = sin mentira.</div>
+        <div class="slang-example">"This is the best album she's ever made, no cap"</div>
+        <div class="slang-song">🎵 Young Thug, Lil Uzi Vert — popularizado en hip-hop</div>
+      </div>
+      <div class="slang-letter-badge">N</div>
+    </div>
+
+    <!-- O -->
+    <div class="section-divider" data-section="O"><span class="section-divider-letter">O</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="on repeat" data-letter="O">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">on repeat</span><span class="slang-pos">expr.</span><span class="slang-origin">🎵 Cultura musical</span></div>
+        <div class="slang-def">Escuchar algo continuamente, en bucle. Indica que una canción o álbum te obsesiona.</div>
+        <div class="slang-example">"This track has been on repeat for three days straight"</div>
+        <div class="slang-song">🎵 Aparece en letras de varios artistas pop modernos</div>
+      </div>
+      <div class="slang-letter-badge">O</div>
+    </div>
+
+    <!-- R -->
+    <div class="section-divider" data-section="R"><span class="section-divider-letter">R</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="ride or die" data-letter="R">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">ride or die</span><span class="slang-pos">expr.</span><span class="slang-origin">🇺🇸 Hip-hop</span></div>
+        <div class="slang-def">Alguien absolutamente leal que estará con vos pase lo que pase. Lealtad incondicional.</div>
+        <div class="slang-example">"She's my ride or die — always there no matter what happens"</div>
+        <div class="slang-song">🎵 Beyoncé, Nicki Minaj — muy frecuente en R&amp;B y hip-hop</div>
+      </div>
+      <div class="slang-letter-badge">R</div>
+    </div>
+
+    <!-- S -->
+    <div class="section-divider" data-section="S"><span class="section-divider-letter">S</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="slay" data-letter="S">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">slay</span><span class="slang-pos">verb. / expr.</span><span class="slang-origin">🌍 Ball culture → pop</span></div>
+        <div class="slang-def">Hacerlo extraordinariamente bien, destacarse, lucir increíble. Viene de la cultura drag/ball de los 80s.</div>
+        <div class="slang-example">"She absolutely slayed that performance — the crowd went wild"</div>
+        <div class="slang-song">🎵 Beyoncé — "Slay" / popularizado masivamente por fans pop</div>
+      </div>
+      <div class="slang-letter-badge">S</div>
+    </div>
+
+    <div class="slang-card" data-term="sore" data-letter="S">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">sore</span><span class="slang-pos">adj.</span><span class="slang-origin">🇬🇧🇺🇸 Inglés general</span></div>
+        <div class="slang-def">Físicamente dolorido/a, pero en canciones se usa metafóricamente para el dolor emocional profundo.</div>
+        <div class="slang-example">"No one's ever left me quite this sore" — herida emocional que duele físicamente</div>
+        <div class="slang-song">🎵 Shawn Mendes — "Stitches"</div>
+      </div>
+      <div class="slang-letter-badge">S</div>
+    </div>
+
+    <div class="slang-card" data-term="stan" data-letter="S">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">stan</span><span class="slang-pos">verb. / sust.</span><span class="slang-origin">🎵 Eminem → cultura fan</span></div>
+        <div class="slang-def">Fan obsesivo/a de un artista. Como verbo: admirar a alguien con intensidad. "I stan her" = soy fan absoluto/a.</div>
+        <div class="slang-example">"I've been stanning her since her first album" / "The stans are going crazy on Twitter"</div>
+        <div class="slang-song">🎵 Eminem — "Stan" (de donde viene la palabra)</div>
+      </div>
+      <div class="slang-letter-badge">S</div>
+    </div>
+
+    <!-- T -->
+    <div class="section-divider" data-section="T"><span class="section-divider-letter">T</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="tea" data-letter="T">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">tea</span><span class="slang-pos">sust.</span><span class="slang-origin">🌍 LGBTQ+ / Ball culture</span></div>
+        <div class="slang-def">Chismes, información jugosa o la verdad sobre algo. "Spill the tea" = contame el chisme / decime la verdad.</div>
+        <div class="slang-example">"Okay, spill the tea — what really happened between them?"</div>
+        <div class="slang-song">🎵 Ariana Grande, Nicki Minaj — lo usan frecuentemente</div>
+      </div>
+      <div class="slang-letter-badge">T</div>
+    </div>
+
+    <!-- V -->
+    <div class="section-divider" data-section="V"><span class="section-divider-letter">V</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="vibe" data-letter="V">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">vibe</span><span class="slang-pos">sust. / verb.</span><span class="slang-origin">🌍 Universal pop</span></div>
+        <div class="slang-def">La atmósfera, energía o sensación de algo. "This song has a vibe" = tiene una energía especial. "Vibing" = disfrutando relajadamente.</div>
+        <div class="slang-example">"The whole album has such a good vibe — summer nights energy" / "We were just vibing"</div>
+        <div class="slang-song">🎵 Harry Styles — "Watermelon Sugar" (verano, sensorial = pure vibe)</div>
+      </div>
+      <div class="slang-letter-badge">V</div>
+    </div>
+
+    <!-- W -->
+    <div class="section-divider" data-section="W"><span class="section-divider-letter">W</span><div class="section-divider-line"></div></div>
+
+    <div class="slang-card" data-term="wavy" data-letter="W">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">wavy</span><span class="slang-pos">adj.</span><span class="slang-origin">🇺🇸 Hip-hop / R&amp;B</span></div>
+        <div class="slang-def">Que es muy cool, de alta calidad, que fluye bien. Similar a "smooth" o "stylish".</div>
+        <div class="slang-example">"That beat is so wavy — it just flows perfectly"</div>
+        <div class="slang-song">🎵 ASAP Rocky, Drake — popular en hip-hop moderno</div>
+      </div>
+      <div class="slang-letter-badge">W</div>
+    </div>
+
+    <div class="slang-card" data-term="woke" data-letter="W">
+      <div class="slang-left">
+        <div class="slang-header"><span class="slang-term">woke</span><span class="slang-pos">adj.</span><span class="slang-origin">🇺🇸 AAVE → mainstream</span></div>
+        <div class="slang-def">Consciente de injusticias sociales y raciales. Viene del AAVE (inglés afroamericano vernáculo). Ahora también usado irónicamente.</div>
+        <div class="slang-example">"That artist has always been woke — social issues in every song"</div>
+        <div class="slang-song">🎵 Childish Gambino, Kendrick Lamar — artistas con fuerte conciencia social</div>
+      </div>
+      <div class="slang-letter-badge">W</div>
+    </div>
+
+  </div><!-- /slang-list -->
+</div>
+
+<footer>
+  <p>Aprende Inglés con Música · Micha © 2026 · Hecho con <span>❤️ + 🎵</span></p>
+  <div class="footer-links">
+    <a href="../index.html">Inicio</a>
+    <a href="../blog/blog.html">Blog</a>
+    <a href="../sobre.html">Sobre el Proyecto</a>
+    <a href="../privacidad.html">Política de Privacidad</a>
+  </div>
+</footer>
+
+<script>
+// === PARTICLES ===
+const pCanvas=document.getElementById('particles-canvas');const pCtx=pCanvas.getContext('2d');let particles=[];
+function initParticles(){pCanvas.width=window.innerWidth;pCanvas.height=window.innerHeight;particles=[];const count=Math.min(45,Math.floor(window.innerWidth/22));const syms=['♪','♫','♩','A','B','C','D'];const colors=['#fbbf24','#818cf8','#c084fc','#38bdf8'];for(let i=0;i<count;i++)particles.push({x:Math.random()*pCanvas.width,y:Math.random()*pCanvas.height,sym:syms[Math.floor(Math.random()*syms.length)],color:colors[Math.floor(Math.random()*colors.length)],size:8+Math.random()*12,opacity:0.02+Math.random()*0.05,vy:-0.12-Math.random()*0.18,vx:(Math.random()-0.5)*0.08,pulse:Math.random()*Math.PI*2});}
+function animateParticles(){pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);particles.forEach(p=>{p.y+=p.vy;p.x+=p.vx;p.pulse+=0.015;if(p.y<-30){p.y=pCanvas.height+10;p.x=Math.random()*pCanvas.width;}const alpha=p.opacity*(0.7+0.3*Math.sin(p.pulse));pCtx.globalAlpha=alpha;pCtx.fillStyle=p.color;pCtx.font=`${p.size}px serif`;pCtx.fillText(p.sym,p.x,p.y);});pCtx.globalAlpha=1;requestAnimationFrame(animateParticles);}
+window.addEventListener('resize',initParticles);window.addEventListener('DOMContentLoaded',()=>{initParticles();animateParticles();});
+
+// === SEARCH + FILTER ===
+const searchInput = document.getElementById('slangSearch');
+const slangCards = document.querySelectorAll('.slang-card');
+const sectionDividers = document.querySelectorAll('.section-divider');
+const alphaBtns = document.querySelectorAll('.alpha-btn');
+const noResults = document.getElementById('noResults');
+
+let currentLetter = 'all';
+
+function filterCards() {
+  const query = searchInput.value.toLowerCase().trim();
+  let visibleCount = 0;
+  const visibleLetters = new Set();
+
+  slangCards.forEach(card => {
+    const term = card.dataset.term.toLowerCase();
+    const letter = card.dataset.letter;
+    const cardText = card.innerText.toLowerCase();
+    const matchesSearch = query === '' || term.includes(query) || cardText.includes(query);
+    const matchesLetter = currentLetter === 'all' || letter === currentLetter;
+    if (matchesSearch && matchesLetter) {
+      card.classList.remove('hidden');
+      visibleCount++;
+      visibleLetters.add(letter);
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+
+  sectionDividers.forEach(div => {
+    const sec = div.dataset.section;
+    div.style.display = (currentLetter === 'all' || sec === currentLetter) && (visibleLetters.has(sec) || query === '') ? 'flex' : 'none';
+    if (query !== '' && !visibleLetters.has(sec)) div.style.display = 'none';
+  });
+
+  noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+}
+
+searchInput.addEventListener('input', filterCards);
+
+alphaBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    alphaBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentLetter = btn.dataset.letter;
+    searchInput.value = '';
+    filterCards();
+  });
+});
+</script>
+</body>
+</html>

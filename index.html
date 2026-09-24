@@ -158,6 +158,7 @@
 
     .song-card.cyan-glow:hover { border-color: rgba(56,189,248,0.3); box-shadow: 0 25px 60px rgba(56,189,248,0.12); }
     .song-card.pink-glow:hover { border-color: rgba(255,141,161,0.3); box-shadow: 0 25px 60px rgba(255,141,161,0.12); }
+    .song-card.amber-glow:hover { border-color: rgba(245,158,11,0.35); box-shadow: 0 25px 60px rgba(245,158,11,0.16); }
     .song-card.gray-glow { opacity: 0.55; filter: grayscale(50%); pointer-events: none; }
 
     /* Card cover image */
@@ -256,6 +257,7 @@
 
     .card-artist.cyan { color: #38bdf8; }
     .card-artist.pink { color: #ff8da1; }
+    .card-artist.amber { color: #f59e0b; }
 
     /* Topics list */
     .topics-list {
@@ -304,6 +306,17 @@
       transform: translateY(-2px);
     }
 
+    .btn-quiz.amber {
+      background: linear-gradient(135deg, #d97706, #b45309);
+      color: white; box-shadow: 0 4px 20px rgba(217,119,6,0.3);
+    }
+
+    .btn-quiz.amber:hover {
+      background: linear-gradient(135deg, #b45309, #92400e);
+      box-shadow: 0 8px 28px rgba(217,119,6,0.5);
+      transform: translateY(-2px);
+    }
+
     .btn-quiz.locked {
       background: rgba(71,85,105,0.5);
       color: rgba(255,255,255,0.3);
@@ -340,6 +353,53 @@
 
     .feature-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
 
+    /* === NAV === */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,9,15,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 12px;
+      height: 56px;
+    }
+
+    .nav-logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 900; font-size: 1rem;
+      background: linear-gradient(135deg, #38bdf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none; white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex; gap: 4px; margin-left: auto; align-items: center;
+    }
+
+    .nav-link {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; font-weight: 600;
+      padding: 6px 13px; border-radius: 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover { color: #38bdf8; background: rgba(56,189,248,0.08); }
+
+    .nav-btn {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      color: #06090f; font-weight: 800; font-size: 0.82rem;
+      padding: 7px 15px; border-radius: 10px;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+
+    .nav-btn:hover { opacity: 0.85; }
+
     /* === FOOTER === */
     footer {
       position: relative; z-index: 1;
@@ -350,18 +410,44 @@
 
     footer span { color: #38bdf8; }
 
+    .footer-links {
+      display: flex; justify-content: center; gap: 18px;
+      flex-wrap: wrap; margin-top: 10px;
+    }
+
+    .footer-links a {
+      color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: #38bdf8; }
+
     /* === RESPONSIVE === */
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .hero-title { font-size: 1.8rem; }
       .hero-stats { gap: 18px; }
       .songs-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr 1fr; }
+      .nav-link { padding: 6px 9px; font-size: 0.78rem; }
     }
   </style>
 </head>
 <body>
 
 <canvas id="particles-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">🎵 Inglés con Música</a>
+    <div class="nav-links">
+      <a href="blog/blog.html" class="nav-link">📝 Blog</a>
+      <a href="recursos/diccionario-slang.html" class="nav-link">📚 Recursos</a>
+      <a href="sobre.html" class="nav-link">Sobre</a>
+      <a href="#quizzes" class="nav-btn">🎮 Quizzes</a>
+    </div>
+  </div>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -391,7 +477,7 @@
 </section>
 
 <!-- MAIN -->
-<div class="main-content">
+<div class="main-content" id="quizzes">
 
   <!-- SONGS SECTION -->
   <div class="section-header">
@@ -476,6 +562,46 @@
           </div>
         </div>
         <a href="Canciones/Shawn_Mendes_Stitches/quiz.html" class="btn-quiz cyan">
+          🧠 Empezar Quiz
+        </a>
+      </div>
+    </div>
+
+    <!-- CARD 3: Katy Perry - The One That Got Away -->
+    <div class="song-card amber-glow">
+      <div class="card-cover">
+        <img src="Canciones/KatyPerry_TheOneThatGotAway/cover.svg"
+             alt="The One That Got Away - Katy Perry">
+        <div class="card-cover-overlay"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-intermediate">Intermedio</span>
+          <span class="level-badge badge-questions">15 preguntas</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">The One That Got Away</div>
+          <div class="card-artist amber">Katy Perry</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item">
+            <span class="topic-emoji">📖</span>
+            <span><b>Vocabulario:</b> "Make out", "Muse", "Clue"</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">🔗</span>
+            <span><b>Gramática:</b> Hábitos pasados ("Used to", "Would")</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">💡</span>
+            <span><b>Modismos:</b> "The one that got away", "Face the music"</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">✨</span>
+            <span><b>Expresión:</b> Modal perfect "I should've told you"</span>
+          </div>
+        </div>
+        <a href="Canciones/KatyPerry_TheOneThatGotAway/quiz.html" class="btn-quiz amber">
           🧠 Empezar Quiz
         </a>
       </div>
@@ -767,10 +893,14 @@
 <footer>
   <p>Aprende Inglés con Música · Micha © 2026 · Hecho con <span>❤️ + 🎵</span></p>
   <p style="margin-top:4px;">Powered by Web Speech API · AudioContext · Vanilla JS</p>
-  <p style="margin-top:10px; display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
-    <a href="sobre.html" style="color:var(--muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#38bdf8'" onmouseout="this.style.color='var(--muted)'">Sobre el Proyecto</a>
-    <a href="privacidad.html" style="color:var(--muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#38bdf8'" onmouseout="this.style.color='var(--muted)'">Política de Privacidad</a>
-  </p>
+  <div class="footer-links">
+    <a href="blog/blog.html">📝 Blog</a>
+    <a href="recursos/diccionario-slang.html">📖 Diccionario Slang</a>
+    <a href="recursos/guia-pronunciacion.html">🗣️ Pronunciación</a>
+    <a href="recursos/gramatica-con-canciones.html">📝 Gramática</a>
+    <a href="sobre.html">Sobre el Proyecto</a>
+    <a href="privacidad.html">Privacidad</a>
+  </div>
 </footer>
 
 <script>
