@@ -159,6 +159,7 @@
     .song-card.cyan-glow:hover { border-color: rgba(56,189,248,0.3); box-shadow: 0 25px 60px rgba(56,189,248,0.12); }
     .song-card.pink-glow:hover { border-color: rgba(255,141,161,0.3); box-shadow: 0 25px 60px rgba(255,141,161,0.12); }
     .song-card.amber-glow:hover { border-color: rgba(245,158,11,0.35); box-shadow: 0 25px 60px rgba(245,158,11,0.16); }
+    .song-card.purple-glow:hover { border-color: rgba(192,132,252,0.35); box-shadow: 0 25px 60px rgba(192,132,252,0.16); }
     .song-card.gray-glow { opacity: 0.55; filter: grayscale(50%); pointer-events: none; }
 
     /* Card cover image */
@@ -258,6 +259,7 @@
     .card-artist.cyan { color: #38bdf8; }
     .card-artist.pink { color: #ff8da1; }
     .card-artist.amber { color: #f59e0b; }
+    .card-artist.purple { color: #c084fc; }
 
     /* Topics list */
     .topics-list {
@@ -314,6 +316,17 @@
     .btn-quiz.amber:hover {
       background: linear-gradient(135deg, #b45309, #92400e);
       box-shadow: 0 8px 28px rgba(217,119,6,0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-quiz.purple {
+      background: linear-gradient(135deg, #7c3aed, #c084fc);
+      color: white; box-shadow: 0 4px 20px rgba(124,58,237,0.3);
+    }
+
+    .btn-quiz.purple:hover {
+      background: linear-gradient(135deg, #6d28d9, #a855f7);
+      box-shadow: 0 8px 28px rgba(124,58,237,0.5);
       transform: translateY(-2px);
     }
 
@@ -607,7 +620,47 @@
       </div>
     </div>
 
-    <!-- CARD 3: Ed Sheeran - Perfect -->
+    <!-- CARD 4: Ravyn Lenae - Love Me Not -->
+    <div class="song-card purple-glow">
+      <div class="card-cover">
+        <img src="Canciones/Ravyn_Lenae_Love_Me_Not/cover.svg"
+             alt="Love Me Not - Ravyn Lenae">
+        <div class="card-cover-overlay"></div>
+        <div class="card-cover-badges">
+          <span class="level-badge badge-intermediate">Intermedio</span>
+          <span class="level-badge badge-questions">6 preguntas</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Love Me Not</div>
+          <div class="card-artist purple">Ravyn Lenae</div>
+        </div>
+        <div class="topics-list">
+          <div class="topic-item">
+            <span class="topic-emoji">📖</span>
+            <span><b>Vocabulario:</b> Slang "Strung out", "Fiend for", "Messy"</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">🔗</span>
+            <span><b>Gramática:</b> Subjuntivo con wish ("I wish you were")</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">💡</span>
+            <span><b>Phrasal Verbs:</b> "Break down", "Hold out", "Get back together"</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-emoji">✨</span>
+            <span><b>Cultura:</b> Juego de la margarita "He loves me, he love me not"</span>
+          </div>
+        </div>
+        <a href="Canciones/Ravyn_Lenae_Love_Me_Not/quiz.html" class="btn-quiz purple">
+          🧠 Empezar Quiz
+        </a>
+      </div>
+    </div>
+
+    <!-- CARD: Ed Sheeran - Perfect -->
     <div class="song-card gray-glow">
       <div class="card-cover" style="background: linear-gradient(135deg, #1a0a2e, #0d1f3c);">
         <div class="card-cover-overlay" style="background: rgba(0,0,0,0.4);"></div>
